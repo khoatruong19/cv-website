@@ -26,7 +26,7 @@ if (isset($_POST['login_btn'])) {
         $errorMessage = 'Invalid username or password.';
     } else {
         // Connect to the database
-        $conn = mysqli_connect('localhost', 'root', '', 'CV');
+        $conn = mysqli_connect('localhost', 'root', '', 'cv_web');
 
         // Check if the connection was successful
         if (!$conn) {
@@ -38,7 +38,7 @@ if (isset($_POST['login_btn'])) {
         $password = mysqli_real_escape_string($conn, $password);
 
         // Query the database to authenticate the user
-        $query = "SELECT * FROM users WHERE name='$username' AND password='$password'";
+        $query = "SELECT * FROM users WHERE username='$username' AND password='$password'";
         $result = mysqli_query($conn, $query);
 
         // Check if the query was successful and if the user exists
@@ -70,7 +70,7 @@ if (isset($_POST['login_btn'])) {
                     <button type="submit" name="login_btn">SIGN IN</button>
                 </form> 
             </div>
-            <h4>Don't have an account? <a href="#">Sign up</a></h4>
+            <h4>Don't have an account? <a href="/register">Sign up</a></h4>
         </div>
         <div class="image">
             <img src="../images/CV.jpg" alt="">

@@ -8,6 +8,9 @@ Route::add('/', function() {
 Route::add('/login', function() {
     require __DIR__ . '/pages/login.php';
 });
+Route::add('/register', function() {
+    require __DIR__ . '/pages/register.php';
+});
 
 
 Route::submit();
