@@ -22,7 +22,7 @@
             </div>
 
             <div class="mt-0 flex flex-col gap-6 h-[100%] h-full pr-6">
-                <div class="px-5 py-4 h-[500px] flex items-center shadow-2xl rounded-2xl bg-white flex-1 gap-4">
+                <div class="px-5 py-4 h-[500px] flex items-center shadow-lg hover:shadow-xl cursor-pointer rounded-2xl bg-white flex-1 gap-4">
                     <img class="w-24 h-24 rounded-full object-cover" alt="cv-avatar" src="https://www.nicepng.com/png/detail/73-735136_one-guy-web-developer-avatar.png" />
                     <div class="flex flex-col gap-1">
                         <h3 class="text-xl font-semibold">John Doe</h3>
@@ -30,7 +30,7 @@
                         <p class="text-base font-medium text-gray-400">Ho Chi Minh city, Viet Nam</p>
                     </div>
                 </div>
-                <div class="px-5 py-4 h-[500px] flex items-center shadow-2xl rounded-2xl bg-white flex-1 gap-4">
+                <div class="px-5 py-4 h-[500px] flex items-center shadow-lg hover:shadow-xl cursor-pointer rounded-2xl bg-white flex-1 gap-4">
                     <img class="w-24 h-24 rounded-full object-cover" alt="cv-avatar" src="https://www.nicepng.com/png/detail/73-735136_one-guy-web-developer-avatar.png" />
                     <div class="flex flex-col gap-1">
                         <h3 class="text-xl font-semibold">John Doe</h3>
@@ -38,7 +38,7 @@
                         <p class="text-base font-medium text-gray-400">Ho Chi Minh city, Viet Nam</p>
                     </div>
                 </div>
-                <div class="px-5 py-4 h-[500px] flex items-center shadow-2xl rounded-2xl bg-white flex-1 gap-4">
+                <div class="px-5 py-4 h-[500px] flex items-center shadow-lg hover:shadow-xl cursor-pointer rounded-2xl bg-white flex-1 gap-4">
                     <img class="w-24 h-24 rounded-full object-cover" alt="cv-avatar" src="https://www.nicepng.com/png/detail/73-735136_one-guy-web-developer-avatar.png" />
                     <div class="flex flex-col gap-1">
                         <h3 class="text-xl font-semibold">John Doe</h3>
@@ -46,7 +46,7 @@
                         <p class="text-base font-medium text-gray-400">Ho Chi Minh city, Viet Nam</p>
                     </div>
                 </div>
-                <div class="px-5 py-4 h-[500px] flex items-center shadow-2xl rounded-2xl bg-white flex-1 gap-4">
+                <div class="px-5 py-4 h-[500px] flex items-center shadow-lg hover:shadow-xl cursor-pointer rounded-2xl bg-white flex-1 gap-4">
                     <img class="w-24 h-24 rounded-full object-cover" alt="cv-avatar" src="https://www.nicepng.com/png/detail/73-735136_one-guy-web-developer-avatar.png" />
                     <div class="flex flex-col gap-1">
                         <h3 class="text-xl font-semibold">John Doe</h3>
