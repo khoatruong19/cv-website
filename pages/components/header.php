@@ -11,6 +11,8 @@
   
   <link rel="stylesheet" href="../../css/global.css">
   <link rel="stylesheet" href="../../css/home.css">
+  <link rel="stylesheet" href="../../css/login.css">
+  
 
 </head>
 
