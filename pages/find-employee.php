@@ -8,7 +8,7 @@
         <div class="w-[50%]">
             <?php require __DIR__ . '/components/row-logo.php';  ?> 
         </div>
-        <h1 class="text-3xl font-semibold mt-8">FIND THE PERFECT FIT FOR YOUR TEAM</h1>
+        <h1 class="text-4xl font-semibold mt-8 ml-[-62px]">FIND THE PERFECT FIT FOR YOUR TEAM</h1>
     </div>
 
     <div class="flex items-start h-52 p-5 gap-20">
