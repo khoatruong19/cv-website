@@ -10,22 +10,9 @@
   <meta name="generator" content="CV Web">
   
   <link rel="stylesheet" href="../../css/global.css">
-  <link rel="stylesheet" href="../../css/login.css">
   <link rel="stylesheet" href="../../css/home.css">
-  <script src="https://kit.fontawesome.com/7633094b57.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../../css/login.css">
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            primary: '#E5F3FF',
-          }
-        }
-      }
-    }
-  </script>
 
 </head>
 
