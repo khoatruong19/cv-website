@@ -52,6 +52,11 @@
             </div>
         </aside>
         <div class="col-12 col-sm-9 m-2">
+            <div class="" id="#">
+                <?php 
+                    include('./components/cv_form_components/det_page.php');
+                ?>
+            </div>
             <div class="" id="item-1">
                 <?php
                     include('./components/cv_form_components/exp_page.php');
