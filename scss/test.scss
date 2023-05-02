@@ -1,0 +1,10 @@
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+
+$custom-colors: (
+    "royaltheme": #d93eba
+);
+
+$theme_colors: map-merge($map1: $theme-colors, $map2: $custom-colors);
+
+@import "../node_modules/bootstrap/scss/bootstrap";
