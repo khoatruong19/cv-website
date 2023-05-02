@@ -14,6 +14,9 @@ Route::add('/login', function() {
 Route::add('/register', function() {
     require __DIR__ . '/pages/register.php';
 });
+Route::add('/init_table', function() {
+    require __DIR__ . '/pages/inittable.php';
+});
 
 
 Route::submit();
