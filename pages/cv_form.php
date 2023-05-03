@@ -37,23 +37,23 @@
 <!-- <body> -->
 <body data-bs-spy="scroll" data-bs-target="#sidebar_list" data-bs-offset="0" class="scrollspy w-100" tabindex="0" style="overflow-x:hidden">
     <div class="row">
-        <aside class="col-12 col-sm-2 p-0 d-flex flex-column sticky-top font_aside" style="height:100vh; background-color: rgb(160,160,160)">
+        <aside class="col-12 col-sm-2 p-0 d-flex flex-column sticky-top font_aside" style="height:100vh; background-color: #B4D3F0">
             <div class="text-center p-3 pb-0">
                 <img class="img-fluid rounded-circle my-4 p-1 d-none d-md-block shadow"src="https://impreza.us-themes.com/wp-content/uploads/paolo-bendandi-D-8XODEIr_s-unsplash.jpg" alt="profile picture" />
             </div>
             <div class="d-block mb-4 d-flex justify-content-center align-items-center">
-                <p class="text-dark text-uppercase fw-bold custom_name">Huy Hieu</p>
+                <p class="text-secondary text-uppercase fw-bold custom_name">Huy Hieu</p>
             </div>
             <div class="list-group list-group-flush position-stick vh-100"  id="sidebar_list">
-                <a href="#"             class="d-block p-4 list-group-item list-group-item-action list-group-item border-bottom border-top  d-flex justify-content-center align-items-center text-dark text-decoration-none text-uppercase">details</a>
+                <a href="#item-0" class="d-block p-4  list-group-item-action  list-group-item border-bottom d-flex justify-content-center align-items-center text-dark text-decoration-none text-uppercase border-top">details</a>
                 <a href="#item-1" class="d-block p-4  list-group-item-action  list-group-item border-bottom d-flex justify-content-center align-items-center text-dark text-decoration-none text-uppercase ">experience</a>
                 <a href="#item-2" class="d-block p-4  list-group-item-action  list-group-item border-bottom d-flex justify-content-center align-items-center text-dark text-decoration-none text-uppercase ">education</a>
                 <a href="#item-3" class="d-block p-4  list-group-item-action  list-group-item border-bottom d-flex justify-content-center align-items-center text-dark text-decoration-none text-uppercase ">certificates</a>
             </div>
         </aside>
         <div class="col-12 col-sm-9 m-2">
-            <div class="" id="#">
-                <?php 
+            <div class="" id="item-0">
+                <?php
                     include('./components/cv_form_components/det_page.php');
                 ?>
             </div>

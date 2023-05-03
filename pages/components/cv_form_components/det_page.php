@@ -22,7 +22,7 @@
                     <label for="det_lastName" class="form-label">Last Name</label>
                     <input type="text" class="form-control border-input shadow" id="last_name">
                 </div>
-            </div>   
+            </div>
             <!-- <div class="col-md-4"></div> -->
             <!-- </div> -->
             <div class="row g-4">

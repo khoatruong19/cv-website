@@ -350,17 +350,17 @@
 }
 
 .list-group-item {
-  background-color: rgb(160, 160, 160);
+  background-color: #B4D3F0;
   color: #333;
   border-color: #ddd;
 }
 .list-group-item:hover {
-  background-color: #878787;
+  background-color: #97c7f4;
   color: #fff;
-  border-color: #bbb;
+  border-color: #97c7f4;
 }
 
 .list-group {
-  --bs-list-group-active-bg: rgb(100, 99, 99);
-  --bs-list-group-active-border-color: $border-color;
+  --bs-list-group-active-bg: #9ec6ec;
+  --bs-list-group-active-border-color: #97c7f4;
 }/*# sourceMappingURL=test_cus.css.map */
