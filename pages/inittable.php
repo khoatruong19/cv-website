@@ -41,6 +41,7 @@ $sql = "CREATE TABLE IF NOT EXISTS $tableName (
   email VARCHAR(50) NOT NULL,
   phone VARCHAR(20) NOT NULL,
   address VARCHAR(100) NOT NULL,
+  avatar VARCHAR(500),
   job_title VARCHAR(50) NOT NULL,
   level VARCHAR(50) NOT NULL,
   skills TEXT NOT NULL,

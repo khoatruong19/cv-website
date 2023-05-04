@@ -8,6 +8,9 @@ Route::add('/', function() {
 Route::add('/find-employee', function() {
     require __DIR__ . '/pages/find-employee.php';
 });
+Route::add('/find-employee-process', function() {
+    require __DIR__ . '/pages/find-employee-process.php';
+});
 Route::add('/login', function() {
     require __DIR__ . '/pages/login.php';
 });
@@ -16,9 +19,6 @@ Route::add('/register', function() {
 });
 Route::add('/init_table', function() {
     require __DIR__ . '/pages/inittable.php';
-});
-Route::add('/process_data', function() {
-    require __DIR__ . '/pages/process-data.php';
 });
 
 
