@@ -17,6 +17,9 @@ Route::add('/register', function() {
 Route::add('/init_table', function() {
     require __DIR__ . '/pages/inittable.php';
 });
+Route::add('/process_data', function() {
+    require __DIR__ . '/pages/process-data.php';
+});
 
 
 Route::submit();

@@ -45,7 +45,7 @@
     </div>
 
     <div class="flex items-start h-52 p-5 gap-20">
-        <form action="#" onsubmit="handleSubmitFilter();return false" class="flex flex-col gap-8 w-[40%] h-[80vh] shadow-2xl bg-white translate-y-[-10%] translate-x-[5%] rounded-lg overflow-y-auto py-3 px-5">
+        <form id="filter-form" onsubmit="handleSubmitFilter();return false;" action="#" method="post" class="flex flex-col gap-8 w-[40%] h-[80vh] shadow-2xl bg-white translate-y-[-10%] translate-x-[5%] rounded-lg overflow-y-auto py-3 px-5">
             <div class="flex items-center justify-between">
                 <h2 class="text-3xl font-semibold">Filter</h2>
                 <span class="text-xl text-red-500 font-bold hover:opacity-70 cursor-pointer">Clear all</span>
@@ -53,7 +53,7 @@
             <?php require __DIR__ . '/components/divider.php';  ?> 
             <div class="flex items-center gap-5">
                 <h3 class="text-2xl font-semibold">Position</h3>
-                <select id="position-input" class="outline-none w-full p-2 border-2 border-primary rounded-md appearance-none cursor-pointer">
+                <select name="position" id="position-input" class="form-data outline-none w-full p-2 border-2 border-primary rounded-md appearance-none cursor-pointer">
                     <option selected>All</option>
                     <option>Front-end Developer</option>
                     <option>Back-end Developer</option>
@@ -63,7 +63,7 @@
             <?php require __DIR__ . '/components/divider.php';  ?> 
             <div class="flex items-center gap-5">
                 <h3 class="text-2xl font-semibold">Level</h3>
-                <select id="level-input" class="outline-none w-full p-2 border-2 border-primary rounded-md appearance-none cursor-pointer">
+                <select name="level" id="level-input" class="form-data outline-none w-full p-2 border-2 border-primary rounded-md appearance-none cursor-pointer">
                     <option selected>All</option>
                     <option>Intern</option>
                     <option>Fresher</option>
@@ -76,7 +76,7 @@
             <?php require __DIR__ . '/components/divider.php';  ?> 
             <div class="flex items-center gap-5">
                 <h3 class="text-2xl font-semibold">Years Of Experience</h3>
-                <select id="experience-input" class="outline-none w-full p-2 border-2 border-primary rounded-md appearance-none cursor-pointer max-w-[185px]">
+                <select name="experience" id="experience-input" class="form-data outline-none w-full p-2 border-2 border-primary rounded-md appearance-none cursor-pointer max-w-[185px]">
                     <option selected>None</option>
                     <option>Less than 1 year</option>
                     <option>1-2 years</option>
@@ -91,8 +91,8 @@
                 <input
                     id="skills-input"
                     type="text"
-                    class="w-full px-2 py-1 text-sm border border-gray-300 rounded outline-none max-h-[50px] overflow-y-auto"
-                    name="skills-input"
+                    class="form-data w-full px-2 py-1 text-sm border border-gray-300 rounded outline-none max-h-[50px] overflow-y-auto"
+                    name="skills"
                     value=""
                     autofocus
                 />
@@ -100,16 +100,16 @@
             <?php require __DIR__ . '/components/divider.php';  ?> 
             <div class="flex items-center gap-5">
                 <h3 class="text-2xl font-semibold bg-success">Location</h3>
-                <select id="location-input" class="outline-none w-full p-2 border-2 border-primary rounded-md appearance-none cursor-pointer max-w-[185px]">
+                <select name="location" id="location-input" class="form-data outline-none w-full p-2 border-2 border-primary rounded-md appearance-none cursor-pointer max-w-[185px]">
                     <option selected>None</option>
                     <option>Ho Chi Minh</option>
                     <option>Ha Noi</option>
                 </select>
             </div>
-            <button type="submit" class="px-3 py-1.5 w-fit mx-auto bg-primary rounded-md font-semibold hover:opacity-70">Submit</button>
+            <button id="submit" type="submit" class="px-3 py-1.5 w-fit mx-auto bg-primary rounded-md font-semibold hover:opacity-70">Submit</button>
         </form>
         <div class="w-[60%]">
-            <form action="#" onsubmit="handleSearchJobTitle();return false">
+            <form action="#" onsubmit="handleSearchJobTitle()" method="POST">
                 <div class="w-[500px] mx-auto flex items-center gap-2 h-12 px-4 bg-white rounded-2xl shadow-2xl translate-y-[-97%]">
                     <input id="job-title-input" class="flex-1 h-[100%] outline-none" type="text" placeholder="Search for job title" />   
                     <i class="fa-solid fa-magnifying-glass"></i>
@@ -166,7 +166,7 @@
 <script src="https://unpkg.com/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>
 <script>
     // The DOM element you wish to replace with Tagify
-    var input = document.querySelector('input[name=skills-input]');
+    var input = document.querySelector('input[name=skills]');
     // initialize Tagify on the above input node reference
     new Tagify(input);
 </script>
@@ -174,3 +174,46 @@
 
 
 <?php require __DIR__ . '/components/footer.php';  ?>
+
+<?php
+    include "dbcontroller.php";
+    function formatSkills($skill){
+        return $skill->value;
+    }
+    if(isset($_POST["position"]) || isset($_POST["level"]) || isset($_POST["experience"]) || isset($_POST["skills"]) || isset($_POST["location"])){
+    
+    $position = $_POST["position"];
+    $level = $_POST["level"];
+    $experience = $_POST["experience"];
+    $skills = $_POST["skills"];
+    $location = $_POST["location"];
+
+    // $skills = json_decode($skills);
+    // $skills = array_map('formatSkills', $skills);
+    // $skills = join(";",$skills);
+
+    $sql = "SELECT * FROM cvs";
+
+    // echo  $position;
+    // echo  $level;
+    // echo  $experience;
+    // echo  $skills;
+    // echo  $location;
+
+    try{
+        $result = mysqli_query($conn, $sql);
+        if (mysqli_num_rows($result) > 0) {
+            // output data of each row
+            while($row = mysqli_fetch_assoc($result)) {
+                echo "{$row["last_name"]}";
+            }
+        } else {
+            echo "No cvs found";
+        }
+      }
+      catch(mysqli_sql_exception){
+        echo "FAil to query cvs";
+      }
+
+    }
+?>
