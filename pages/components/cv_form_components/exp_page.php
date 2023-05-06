@@ -3,38 +3,7 @@
     <hr style="border-top: 2px solid black;">
 
     <h3 class="row g-3 flex-row text-uppercase text-dark p-3 d-block  overflow-auto" style="height:72vh" id="exp_space">
-        <div class="row">
-            <div class="col-1">
-                <i class="far fa-circle-check fa-2x" style="color: rgb(76, 160, 230)"></i>
-            </div>
-            <div class="col-9">
-                <h5 class="mt-0 mb-1">Creative Director at Uber</h5>
-                <p class="text-secondary fw-light custom_fs"> Sep 2018 - Jan 2020</p>
-            </div>
-            <hr style="border-top: 1px solid rgb(233,231,231);">
-        </div>
 
-        <div class="row">
-            <div class="col-1">
-                <i class="far fa-circle-check fa-2x" style="color: rgb(76, 160, 230)"></i>
-            </div>
-            <div class="col-9">
-                <h5 class="mt-0 mb-1">Creative Director at Uber</h5>
-                <p class="text-secondary fw-light custom_fs"> Sep 2018 - Jan 2020</p>
-            </div>
-            <hr style="border-top: 1px solid rgb(128,128,128);">
-        </div>
-
-        <div class="row">
-            <div class="col-1">
-                <i class="far fa-circle-check fa-2x" style="color: rgb(76, 160, 230)"></i>
-            </div>
-            <div class="col-9">
-                <h5 class="mt-0 mb-1">Creative Director at Uber</h5>
-                <p class="text-secondary fw-light custom_fs"> Sep 2018 - Jan 2020</p>
-            </div>
-            <hr style="border-top: 1px solid rgb(128,128,128);">
-        </div>
     </h3>
 
 <!-- Modal -->
@@ -47,32 +16,31 @@
         </div>
         <div class="modal-body">
                 <div class="container" id="experience_form">
-                <form class="row g-4 justify-content-between" action="">
-                    <!-- <div class="justify-content-between"> -->
+                <form class="row g-4 justify-content-between" name="exp_form">
                     <div class="col-md-6">
                         <label for="exp_jobTitle" class="form-label">Job Title</label>
-                        <input type="text" class="form-control border-input " id="jobTitle">
+                        <input type="text" class="form-control border-input " name="exp_job" required>
                     </div>
                     <div class="col-md-6">
                         <label for="exp_company" class="form-label">Company</label>
-                        <input type="password" class="form-control border-input shadow" id="exp_company">
+                        <input type="text" class="form-control border-input shadow" name="exp_company" required>
                     </div>
                     <!-- </div> -->
                     <div class="col-md-3">
                         <label for="exp_from" class="form-label">From</label>
-                        <input type="text" class="form-control border-input shadow" id="exp_from">
+                        <input type="month" class="form-control border-input shadow" name="exp_from" required>
                     </div>
                     <div class="col-md-3">
                         <label for="exp_to" class="form-label">To</label>
-                        <input type="text" class="form-control border-input shadow"  id="exp_to">
+                        <input type="month" class="form-control border-input shadow"  name="exp_to" required>
                     </div>
                     <div class="col-md-6">
                         <label for="exp_location" class="form-label">Company Location</label>
-                        <input type="text" class="form-control border-input shadow" id="exp_location">
+                        <input type="text" class="form-control border-input shadow" name="exp_location" required>
                     </div>
                     <div class="col-12">
                         <label for="exp_des" class="form-label">Description</label>
-                        <textarea type="text" class="form-control border-input shadow" style="height: 15vh"  id="exp_des"></textarea>
+                        <textarea type="text" class="form-control border-input shadow" style="height: 15vh"  name="exp_des"></textarea>
                     </div>
                 </form>
             </div>
@@ -80,7 +48,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary mr-3">Submit</button>
+            <button type="button" class="btn btn-primary mr-3" data-mdb-dismiss="modal" onclick="submitExpForm()" >Submit</button>
         </div>
         </div>
     </div>
@@ -98,4 +66,6 @@
             <button type="submit" class="cus_next btn btn-primary rounded-3 d-block border-input text-dark shadow" style="background-color: rgb(214, 225, 242);">Next</button>
         </div>
     </div>
+
+    <script src="../js/cv_form_js/ExpForm.js"></script>
 </div>

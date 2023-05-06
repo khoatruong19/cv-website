@@ -25,32 +25,32 @@
         </div>
         <div class="modal-body">
                 <div class="container" id="education_form">
-                <form class="row g-4 justify-content-between" action="">
+                <form class="row g-4 justify-content-between" name="edu_form">
                     <!-- <div class="justify-content-between"> -->
                     <div class="col-md-6">
                         <label for="edu_deparment" class="form-label">Department</label>
-                        <input type="text" class="form-control border-input " id="jobTitle">
+                        <input type="text" class="form-control border-input " name="edu_department">
                     </div>
                     <div class="col-md-6">
                         <label for="edu_falcuty" class="form-label">Faculty</label>
-                        <input type="password" class="form-control border-input shadow" id="edu_company">
+                        <input type="text" class="form-control border-input shadow" name="edu_faculty">
                     </div>
                     <!-- </div> -->
                     <div class="col-md-3">
                         <label for="edu_from" class="form-label">From</label>
-                        <input type="text" class="form-control border-input shadow" id="edu_from">
+                        <input type="month" class="form-control border-input shadow" name="edu_from">
                     </div>
                     <div class="col-md-3">
                         <label for="edu_to" class="form-label">To</label>
-                        <input type="text" class="form-control border-input shadow"  id="edu_to">
+                        <input type="month" class="form-control border-input shadow"  name="edu_to">
                     </div>
                     <div class="col-md-6">
                         <label for="edu_location" class="form-label">Department Location</label>
-                        <input type="text" class="form-control border-input shadow" id="edu_location">
+                        <input type="text" class="form-control border-input shadow" name="edu_location">
                     </div>
                     <div class="col-12">
                         <label for="edu_des" class="form-label">Description</label>
-                        <textarea type="text" class="form-control border-input shadow" style="height: 15vh"  id="edu_des"></textarea>
+                        <textarea type="text" class="form-control border-input shadow" style="height: 15vh"  name="edu_des"></textarea>
                     </div>
                 </form>
             </div>
@@ -58,7 +58,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary mr-3">Submit</button>
+            <button type="button" class="btn btn-primary mr-3" data-mdb-dismiss="modal" onclick="submitEduForm()">Submit</button>
         </div>
         </div>
     </div>
@@ -76,4 +76,5 @@
             <button type="submit" class="cus_next btn btn-primary rounded-3 d-block border-input text-dark shadow" style="background-color: rgb(214, 225, 242);">Next</button>
         </div>
     </div>
+    <script src="../js/cv_form_js/EduForm.js"></script>
 </div>

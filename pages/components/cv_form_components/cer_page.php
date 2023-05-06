@@ -26,32 +26,32 @@
         </div>
         <div class="modal-body">
                 <div class="container" id="certificate_form">
-                <form class="row g-4 justify-content-between" action="">
+                <form class="row g-4 justify-content-between" name="cer_form">
                     <!-- <div class="justify-content-between"> -->
                     <div class="col-md-6">
                         <label for="cer_name" class="form-label">Certificate Name</label>
-                        <input type="text" class="form-control border-input " id="jobTitle">
+                        <input type="text" class="form-control border-input " name="cer_name">
                     </div>
                     <div class="col-md-6">
                         <label for="cer_organization" class="form-label">Issuing Organization</label>
-                        <input type="password" class="form-control border-input shadow" id="cer_company">
+                        <input type="text" class="form-control border-input shadow" name="cer_organization">
                     </div>
                     <!-- </div> -->
                     <div class="col-md-3">
                         <label for="cer_from" class="form-label">From</label>
-                        <input type="text" class="form-control border-input shadow" id="cer_from">
+                        <input type="month" class="form-control border-input shadow" name="cer_from">
                     </div>
                     <div class="col-md-3">
                         <label for="cer_to" class="form-label">To</label>
-                        <input type="text" class="form-control border-input shadow"  id="cer_to">
+                        <input type="month" class="form-control border-input shadow"  name="cer_to">
                     </div>
                     <div class="col-md-6">
                         <label for="cer_url" class="form-label">Credential URL</label>
-                        <input type="text" class="form-control border-input shadow" id="cer_location">
+                        <input type="text" class="form-control border-input shadow" name="cer_url">
                     </div>
                     <div class="col-12">
                         <label for="cer_des" class="form-label">Description</label>
-                        <textarea type="text" class="form-control border-input shadow" style="height: 15vh"  id="cer_des"></textarea>
+                        <textarea type="text" class="form-control border-input shadow" style="height: 15vh"  name="cer_des"></textarea>
                     </div>
                 </form>
             </div>
@@ -59,7 +59,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary mr-3">Submit</button>
+            <button type="button" class="btn btn-primary mr-3"data-mdb-dismiss="modal" onclick="submitCerForm()">Submit</button>
         </div>
         </div>
     </div>
@@ -77,4 +77,6 @@
             <button type="submit" class="cus_next btn btn-primary rounded-3 d-block border-input text-dark shadow" style="background-color: rgb(214, 225, 242);">Next</button>
         </div>
     </div>
+
+    <script src="../js/cv_form_js/CerForm.js"></script>
 </div>

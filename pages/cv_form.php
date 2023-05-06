@@ -42,7 +42,7 @@
                 <img class="img-fluid rounded-circle my-4 p-1 d-none d-md-block shadow"src="https://impreza.us-themes.com/wp-content/uploads/paolo-bendandi-D-8XODEIr_s-unsplash.jpg" alt="profile picture" />
             </div>
             <div class="d-block mb-4 d-flex justify-content-center align-items-center">
-                <p class="text-secondary text-uppercase fw-bold custom_name">Huy Hieu</p>
+                <p class="text-dark text-uppercase fw-bold custom_name">Huy Hieu</p>
             </div>
             <div class="list-group list-group-flush position-stick vh-100"  id="sidebar_list">
                 <a href="#item-0" class="d-block p-4  list-group-item-action  list-group-item border-bottom d-flex justify-content-center align-items-center text-dark text-decoration-none text-uppercase border-top">details</a>

@@ -9,11 +9,11 @@
   <meta name="author" content="HCMUT">
   <meta name="generator" content="CV Web">
 
-  <link rel="stylesheet" href="../../styles/global.css">
-  <link rel="stylesheet" href="../../styles/login.css">
-  <link rel="stylesheet" href="../../styles/home.css">
-
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/login.css">
+  <link rel="stylesheet" href="../../css/home.css">
   <script src="https://kit.fontawesome.com/7633094b57.js" crossorigin="anonymous"></script>
+
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
