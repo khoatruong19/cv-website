@@ -16,7 +16,8 @@ require __DIR__ . '/components/header.php';
     // Check if the form is submitted
     if (isset($_POST['login_btn'])) {
         // Get the form data
-        $fullname = mysqli_real_escape_string($conn, $_POST['fullname']);
+        $first_name = mysqli_real_escape_string($conn, $_POST['firstname']);
+        $last_name = mysqli_real_escape_string($conn, $_POST['lastname']);
         $username = mysqli_real_escape_string($conn, $_POST['name']);
         $password = mysqli_real_escape_string($conn, $_POST['password']);
         $confirm_password = mysqli_real_escape_string($conn, $_POST['confirm_password']);
@@ -30,7 +31,7 @@ require __DIR__ . '/components/header.php';
             // $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
             // Insert user data into the database
-            $query = "INSERT INTO users (fullname, username, password) VALUES ('$fullname', '$username', '$password')";
+            $query = "INSERT INTO users (first_name, last_name, username, password) VALUES ('$first_name', '$last_name', '$username', '$password')";
             $result = mysqli_query($conn, $query);
 
             // Check if the insert was successful
@@ -54,8 +55,10 @@ require __DIR__ . '/components/header.php';
             <?php endif; ?>
             <div class="login_form">
                 <form method="post">
-                    <label for="name">Fullname</label><br>
-                    <input type="text" id="name" name="fullname" placeholder="Type your full name" pattern="^[a-zA-ZàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹĐđ\s]+$" title="Fullname must start with a letter and be at least 8 characters long" required><br>
+                    <label for="name">First name</label><br>
+                    <input type="text" id="name" name="firstname" placeholder="Type your full name" pattern="^[a-zA-ZàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹĐđ\s]+$" title="Firstname must start with a letter and be at least 8 characters long" required><br>
+                    <label for="name">Last name</label><br>
+                    <input type="text" id="name" name="lastname" placeholder="Type your full name" pattern="^[a-zA-ZàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹĐđ\s]+$" title="Lastname must start with a letter and be at least 8 characters long" required><br>
                     <label for="name">Username</label><br>
                     <input type="text" id="name" name="name" placeholder="Type your username" pattern="^[a-zA-Z][a-zA-Z0-9]{7,}$" title="Username must start with a letter and be at least 8 characters long" required><br>
                     <label for="password">Password</label><br>
