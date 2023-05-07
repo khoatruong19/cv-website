@@ -45,12 +45,16 @@
                 <input type="text" class="form-control border-input shadow" id="det_jobTitle">
             </div>
             <div class="col-md-8">
+                <label for="det_jobTitle" class="form-label">Level</label>
+                <input type="text" class="form-control border-input shadow" id="det_jobTitle">
+            </div>
+            <div class="col-md-8">
                 <label for="det_skills" class="form-label">Skills</label>
                 <input type="text" class="form-control border-input shadow" id="det_skills">
             </div>
             <div class="col-12">
                 <label for="det_bio" class="form-label">Bio</label>
-                <textarea type="text" class="form-control border-input shadow" style="height: 20vh"  id="det_bio"></textarea>
+                <textarea type="text" class="form-control border-input shadow" style="height: 18vh"  id="det_bio"></textarea>
             </div>
         </form>
     </div>
