@@ -8,7 +8,7 @@
 
 <?php 
     include "dbcontroller.php";
-    $id = $_GET['id'];
+    $id = $_SESSION['userId'];
     $sql = "SELECT * FROM cvs WHERE id = $id";
     $result = mysqli_query($conn, $sql);
     // echo $result;
@@ -80,96 +80,96 @@
             </div>
         </div>
     </div>
-    <div class="row fields">
-        <div class="col relative">
-            <div class="row category experience">
-                <h2>Experience</h2>
-                <?php 
-                    $sql = "SELECT * FROM experiences WHERE cv_id = $id";
-                    $result = mysqli_query($conn, $sql);
-                    
-                    $num_row = mysqli_num_rows($result);
-                    // echo "$num_row";
+</div>
+<div class="row fields">
+    <div class="col relative">
+        <div class="row category experience">
+            <h2>Experience</h2>
+            <?php 
+                $sql = "SELECT * FROM experiences WHERE id_user = $id";
+                $result = mysqli_query($conn, $sql);
+                
+                $num_row = mysqli_num_rows($result);
+                // echo "$num_row";
 
-                    while ($rows = mysqli_fetch_assoc($result)){
-                        $job_title = $rows['job_title'];
-                        $start_date = $rows['start_date'];
-                        $end_date = $rows['end_date'];
-                        $comp_name = $rows['company'];
-                        $comp_loc = $rows['company_location'];
-                        $desp = $rows['description'];
-                        echo "
-                        <div class='category-item'>
-                            <div class='brief mt-6'>
-                                <div class='title-2 fs-5 fw-bold'>$job_title</div>
-                                <span class='fw-light'><span>(Start: $start_date/</span><span>End: $end_date)</span></span>
-                            </div>
-                            <span class='fw-bold fst-italic mb-6'>$comp_name/$comp_loc</span>
-                            <p class='fw-light mb-6'>$desp</p>
+                while ($rows = mysqli_fetch_assoc($result)){
+                    $job_title = $rows['job_title'];
+                    $start_date = $rows['start_date'];
+                    $end_date = $rows['end_date'];
+                    $comp_name = $rows['company'];
+                    $comp_loc = $rows['company_location'];
+                    $desp = $rows['description'];
+                    echo "
+                    <div class='category-item'>
+                        <div class='brief mt-6'>
+                            <div class='title-2 fs-5 fw-bold'>$job_title</div>
+                            <span class='fw-light'><span>(Start: $start_date/</span><span>End: $end_date)</span></span>
                         </div>
-                        ";
-                    }
-                ?>
-            </div>
-            <div class="divider_line"></div>
-            <div class="row category education">
-                <h2>Education</h2>
-                <?php 
-                    $sql = "SELECT * FROM education WHERE cv_id = $id";
-                    $result = mysqli_query($conn, $sql);
-                    
-                    $num_row = mysqli_num_rows($result);
-                    // echo "$num_row";
+                        <span class='fw-bold fst-italic mb-6'>$comp_name/$comp_loc</span>
+                        <p class='fw-light mb-6'>$desp</p>
+                    </div>
+                    ";
+                }
+            ?>
+        </div>
+        <div class="divider_line"></div>
+        <div class="row category education">
+            <h2>Education</h2>
+            <?php 
+                $sql = "SELECT * FROM education WHERE id_user = $id";
+                $result = mysqli_query($conn, $sql);
+                
+                $num_row = mysqli_num_rows($result);
+                // echo "$num_row";
 
-                    while ($rows = mysqli_fetch_assoc($result)){
-                        $department = $rows['department'];
-                        $start_date = $rows['start_date'];
-                        $end_date = $rows['end_date'];
-                        $faculty = $rows['faculty'];
-                        $uni_loc = $rows['location'];
-                        $desp = $rows['description'];
-                        echo "
-                        <div class='category-item'>
-                            <div class='brief mt-6'>
-                                <div class='title-2 fs-5 fw-bold'>$department</div>
-                                <span class='fw-light'><span>(Start: $start_date/</span><span>End: $end_date)</span></span>
-                            </div>
-                            <span class='fw-bold fst-italic mb-6'>$faculty/$uni_loc</span>
-                            <p class='fw-light mb-6'>$desp</p>
+                while ($rows = mysqli_fetch_assoc($result)){
+                    $department = $rows['department'];
+                    $start_date = $rows['start_date'];
+                    $end_date = $rows['end_date'];
+                    $faculty = $rows['faculty'];
+                    $uni_loc = $rows['location'];
+                    $desp = $rows['description'];
+                    echo "
+                    <div class='category-item'>
+                        <div class='brief mt-6'>
+                            <div class='title-2 fs-5 fw-bold'>$department</div>
+                            <span class='fw-light'><span>(Start: $start_date/</span><span>End: $end_date)</span></span>
                         </div>
-                        ";
-                    }
-                ?>
-            </div>
-            <div class="divider_line"></div>
-            <div class="row category certificate">
-                <h2>Certificate</h2>
-                <?php 
-                    $sql = "SELECT * FROM certificates WHERE cv_id = $id";
-                    $result = mysqli_query($conn, $sql);
-                    
-                    $num_row = mysqli_num_rows($result);
-                    // echo "$num_row";
+                        <span class='fw-bold fst-italic mb-6'>$faculty/$uni_loc</span>
+                        <p class='fw-light mb-6'>$desp</p>
+                    </div>
+                    ";
+                }
+            ?>
+        </div>
+        <div class="divider_line"></div>
+        <div class="row category certificate">
+            <h2>Certificate</h2>
+            <?php 
+                $sql = "SELECT * FROM certificates WHERE id_user = $id";
+                $result = mysqli_query($conn, $sql);
+                
+                $num_row = mysqli_num_rows($result);
+                // echo "$num_row";
 
-                    while ($rows = mysqli_fetch_assoc($result)){
-                        $certificate_name = $rows['certificate_name'];
-                        $start_date = $rows['start_date'];
-                        $end_date = $rows['end_date'];
-                        $issue_organization = $rows['issue_organization'];
-                        $desp = $rows['description'];
-                        echo "
-                        <div class='category-item'>
-                            <div class='brief mt-6'>
-                                <div class='title-2 fs-5 fw-bold'>$certificate_name</div>
-                                <span class='fw-light'><span>(Start: $start_date/</span><span>End: $end_date)</span></span>
-                            </div>
-                            <span class='fw-bold fst-italic mb-6'>$issue_organization</span>
-                            <p class='fw-light mb-6'>$desp</p>
+                while ($rows = mysqli_fetch_assoc($result)){
+                    $certificate_name = $rows['certificate_name'];
+                    $start_date = $rows['start_date'];
+                    $end_date = $rows['end_date'];
+                    $issue_organization = $rows['issue_organization'];
+                    $desp = $rows['description'];
+                    echo "
+                    <div class='category-item'>
+                        <div class='brief mt-6'>
+                            <div class='title-2 fs-5 fw-bold'>$certificate_name</div>
+                            <span class='fw-light'><span>(Start: $start_date/</span><span>End: $end_date)</span></span>
                         </div>
-                        ";
-                    }
-                ?>
-            </div>
+                        <span class='fw-bold fst-italic mb-6'>$issue_organization</span>
+                        <p class='fw-light mb-6'>$desp</p>
+                    </div>
+                    ";
+                }
+            ?>
         </div>
     </div>
 </div>
