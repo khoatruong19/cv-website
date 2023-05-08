@@ -7,7 +7,9 @@
 <body>
 
 <?php 
-    $sql = 'SELECT '
+    // $sql = 'SELECT '
+    $id = $_GET["id"];
+    echo $id;
 ?>
 
 <div class="container">
