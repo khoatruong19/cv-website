@@ -29,14 +29,6 @@
     type="text/javascript"
     src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.js"
     ></script>
-   qet"
-    /> -->
-  <link
-      href="https://unpkg.com/@yaireo/tagify/dist/tagify.css"
-      rel="stylesheet"
-      type="text/css"
-    />
-
     <!-- JQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="../styles/cv_form.css">
@@ -63,24 +55,24 @@
         <div class="col-12 col-sm-9 m-2">
             <div class="" id="item-0">
                 <?php
-                    require __DIR__ . '/components/cv_form_components/det_page.php';
+                    include('./components/cv_form_components/det_page.php');
                 ?>
             </div>
             <div class="" id="item-1">
                 <?php
-                    require __DIR__ . '/components/cv_form_components/exp_page.php';
+                    include('./components/cv_form_components/exp_page.php');
                 ?>
             </div>
             <div class="" id="item-2">
                 <?php
-                    require __DIR__ . '/components/cv_form_components/edu_page.php';
+                    include('./components/cv_form_components/edu_page.php');
                 ?>
             </div>
             <div class="pb-2" id="item-3">
                 <?php
-                    require __DIR__ . '/components/cv_form_components/cer_page.php';
+                    include('./components/cv_form_components/cer_page.php');
                 ?>
-            </div> 
+            </div>
         </div>
     </div>
 
