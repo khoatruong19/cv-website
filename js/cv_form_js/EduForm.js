@@ -14,6 +14,39 @@ xhttp_edu.onload = function(){
 }
 xhttp_edu.send();
 
+function deleteEduForm()
+{
+    const form = document.forms["edu_form"];
+    const edu_form_id = form["edu_deparment"].getAttribute("id");
+    var url = `../controllers/add_edu.php?delete_id=${edu_form_id}`;
+
+    let deleteReq = new XMLHttpRequest();
+    deleteReq.open('GET',url, true);
+    deleteReq.send();
+    deleteReq.onload = function(){
+        if(deleteReq.status === 200)
+        {
+            var loadfull = new XMLHttpRequest();
+            loadfull.open('GET', '../controllers/show_edu.php', true);
+
+            loadfull.onload = function(){
+                if(loadfull.status === 200)
+                {
+                    let space = document.getElementById("edu_space");
+                    space.innerHTML =  loadfull.responseText;
+                }
+                else{
+                    console.error('Error: ' + loadfull.status);
+                }
+            }
+            loadfull.send();
+        }
+        else{
+            console.error('Error: ' + deleteReq.status);
+        }
+    }
+
+}
 
 function submitEduForm()
 {
@@ -43,9 +76,20 @@ function submitEduForm()
     xhr.onload = function(){
         if(xhr.status === 200)
         {
-            let space = document.getElementById("edu_space");
-            space.innerHTML +=  xhr.responseText;
-            console.log("return status: " + xhr.responseText);
+            var loadfull = new XMLHttpRequest();
+            loadfull.open('GET', '../controllers/show_edu.php', true);
+
+            loadfull.onload = function(){
+                if(loadfull.status === 200)
+                {
+                    let space = document.getElementById("edu_space");
+                    space.innerHTML =  loadfull.responseText;
+                }
+                else{
+                    console.error('Error: ' + loadfull.status);
+                }
+            }
+            loadfull.send();
         }
         else{
             console.error('Error: ' + xhr.status);
@@ -54,3 +98,35 @@ function submitEduForm()
     xhr.send(formData);
 }
 
+function updateEdu(id)
+{
+    console.log("update form")
+    console.log(id);
+    const myForm = document.forms["edu_form"];
+
+    var xhr = new XMLHttpRequest();
+    let url = `../controllers/add_edu.php?id=${id}`;
+    xhr.open("GET",url, true);
+    xhr.send();
+
+    xhr.onload = function(){
+        if(xhr.status === 200)
+        {
+            console.log("update function")
+            var arrRes = xhr.responseText.split('?');
+            arrRes[3] = arrRes[3].slice(0, 7);
+            arrRes[4] = arrRes[4].slice(0, 7);
+            console.log(arrRes);
+            myForm["edu_department"].setAttribute("id", arrRes[0]);
+            myForm["edu_department"].setAttribute("value",arrRes[1]);
+            myForm["edu_faculty"].setAttribute("value",arrRes[2]);
+            myForm["edu_from"].setAttribute("value",arrRes[3]);
+            myForm["edu_to"].setAttribute("value",arrRes[4]);
+            myForm["edu_location"].setAttribute("value",arrRes[5]);
+            myForm["edu_des"].value = arrRes[6];
+        }
+        else{
+            console.log("error in GEt")
+        }
+    }
+}

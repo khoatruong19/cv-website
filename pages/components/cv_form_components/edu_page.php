@@ -56,9 +56,14 @@
             </div>
 
         </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary mr-3" data-mdb-dismiss="modal" onclick="submitEduForm()">Submit</button>
+        <div class="modal-footer d-flex justify-content-between">
+            <div class="ps-2">
+                <button type="button" class="btn btn-danger" data-mdb-dismiss="modal" onclick="deleteEduForm()">Delete</button>
+            </div>
+            <div class="">
+                <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-mdb-dismiss="modal" onclick="submitEduForm()">Submit</button>
+            </div>
         </div>
         </div>
     </div>
@@ -76,5 +81,5 @@
             <button type="submit" class="cus_next btn btn-primary rounded-3 d-block border-input text-dark shadow" style="background-color: rgb(214, 225, 242);">Next</button>
         </div>
     </div>
-    <script src="../js/cv_form_js/EduForm.js"></script>
+    <!-- <script src="../js/cv_form_js/EduForm.js"></script> -->
 </div>

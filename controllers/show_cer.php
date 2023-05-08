@@ -11,6 +11,11 @@
         {
             $root = $dom -> createElement("div");
             $root -> setAttribute("class", "row");
+            $root -> setAttribute("type", "button");
+            $root -> setAttribute("data-mdb-toggle","modal");
+            $root -> setAttribute("data-mdb-target", "#cer_form_modal");
+            $root -> setAttribute("onclick","updateCer(this.id)");
+            $root -> setAttribute("id",$res["id"]);
             $dom -> appendChild($root);
 
             $col1 = $dom -> createElement("div");

@@ -2,7 +2,7 @@
     <h2 class="text-uppercase text-dark pb-3 pt-3 text-bold">your experience</h2>
     <hr style="border-top: 2px solid black;">
 
-    <h3 class="row g-3 flex-row text-uppercase text-dark p-3 d-block  overflow-auto" style="height:72vh" id="exp_space">
+    <h3 class="row g-3 flex-row text-dark text-uppercase p-3 d-block  overflow-auto" style="height:72vh" id="exp_space">
 
     </h3>
 
@@ -46,9 +46,14 @@
             </div>
 
         </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary mr-3" data-mdb-dismiss="modal" onclick="submitExpForm()" >Submit</button>
+        <div class="modal-footer d-flex justify-content-between">
+            <div class="ps-2">
+                <button type="button" class="btn btn-danger" data-mdb-dismiss="modal" onclick="deleteExpForm()">Delete</button>
+            </div>
+            <div class="">
+                <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-mdb-dismiss="modal" onclick="submitExpForm()">Submit</button>
+            </div>
         </div>
         </div>
     </div>
@@ -66,6 +71,8 @@
             <button type="submit" class="cus_next btn btn-primary rounded-3 d-block border-input text-dark shadow" style="background-color: rgb(214, 225, 242);">Next</button>
         </div>
     </div>
+    <script>
 
+    </script>
     <script src="../js/cv_form_js/ExpForm.js"></script>
 </div>

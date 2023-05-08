@@ -32,10 +32,14 @@
 
     <link rel="stylesheet" href="../styles/cv_form.css">
     <link rel="stylesheet" href="../scss/test_cus.css">
+    <script src="../js/cv_form_js/CerForm.js"></script>
+    <script src="../js/cv_form_js/EduForm.js"></script>
+    <!-- <script src="../js/cv_form_js/ExpForm.js"></script> -->
 
 </head>
 <!-- <body> -->
 <body data-bs-spy="scroll" data-bs-target="#sidebar_list" data-bs-offset="0" class="scrollspy w-100" tabindex="0" style="overflow-x:hidden">
+
     <div class="row">
         <aside class="col-12 col-sm-2 p-0 d-flex flex-column sticky-top font_aside" style="height:100vh; background-color: #B4D3F0">
             <div class="text-center p-3 pb-0">

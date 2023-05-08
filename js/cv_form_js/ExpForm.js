@@ -1,21 +1,64 @@
+var xhttp_exp = new XMLHttpRequest();
+xhttp_exp.open('GET', '../controllers/show_exp.php', true);
 
-var xhttp = new XMLHttpRequest();
-xhttp.open('GET', '../controllers/show_exp.php', true);
-
-xhttp.onload = function(){
-    if(xhttp.status === 200)
+xhttp_exp.onload = function(){
+    if(xhttp_exp.status === 200)
     {
+        console.log("ok")
         let space = document.getElementById("exp_space");
-        space.innerHTML =  xhttp.responseText;
-        console.log("heheh")
+        space.innerHTML =  xhttp_exp.responseText;
+
+        console.log("hihihi")
+        const updateBtns = document.querySelectorAll('.exp_class');
+        console.log(updateBtns)
+        updateBtns.forEach(function(updateBtn) {
+        const id = updateBtn.getAttribute('id');
+        console.log("id: ",id);
+        updateBtn.addEventListener('click', function() {
+            updateExp(id);
+        });
+        });
     }
     else{
-        console.log("error");
-        console.error('Error: ' + xhttp.status);
+        console.error('Error: ' + xhttp_exp.status);
     }
 }
-xhttp.send();
+xhttp_exp.send();
 
+
+function deleteExpForm()
+{
+    const form = document.forms["exp_form"];
+    const exp_form_id = form["exp_deparment"].getAttribute("id");
+    var url = `../controllers/add_exp.php?delete_id=${exp_form_id}`;
+
+    let deleteReq = new XMLHttpRequest();
+    deleteReq.open('GET',url, true);
+    deleteReq.send();
+    deleteReq.onload = function(){
+        if(deleteReq.status === 200)
+        {
+            var loadfull = new XMLHttpRequest();
+            loadfull.open('GET', '../controllers/show_exp.php', true);
+
+            loadfull.onload = function(){
+                if(loadfull.status === 200)
+                {
+                    let space = document.getElementById("exp_space");
+                    space.innerHTML =  loadfull.responseText;
+                }
+                else{
+                    console.error('Error: ' + loadfull.status);
+                }
+            }
+            loadfull.send();
+        }
+        else{
+            console.error('Error: ' + deleteReq.status);
+        }
+    }
+
+}
 
 function submitExpForm()
 {
@@ -46,9 +89,20 @@ function submitExpForm()
     xhr.onload = function(){
         if(xhr.status === 200)
         {
-            let space = document.getElementById("exp_space");
-            space.innerHTML +=  xhr.responseText;
-            console.log("return status: " + xhr.responseText);
+            var loadfull = new XMLHttpRequest();
+            loadfull.open('GET', '../controllers/show_exp.php', true);
+
+            loadfull.onload = function(){
+                if(loadfull.status === 200)
+                {
+                    let space = document.getElementById("exp_space");
+                    space.innerHTML =  loadfull.responseText;
+                }
+                else{
+                    console.error('Error: ' + loadfull.status);
+                }
+            }
+            loadfull.send();
         }
         else{
             console.error('Error: ' + xhr.status);
@@ -57,3 +111,35 @@ function submitExpForm()
     xhr.send(formData);
 }
 
+function updateExp(id)
+{
+    console.log("update form")
+    console.log(id);
+    const myForm = document.forms["exp_form"];
+
+    var xhr = new XMLHttpRequest();
+    let url = `../controllers/add_exp.php?id=${id}`;
+    xhr.open("GET",url, true);
+    xhr.send();
+
+    xhr.onload = function(){
+        if(xhr.status === 200)
+        {
+            console.log("update function")
+            var arrRes = xhr.responseText.split('?');
+            arrRes[3] = arrRes[3].slice(0, 7);
+            arrRes[4] = arrRes[4].slice(0, 7);
+            console.log(arrRes);
+            myForm["exp_job"].setAttribute("id", arrRes[0]);
+            myForm["exp_job"].setAttribute("value",arrRes[1]);
+            myForm["exp_company"].setAttribute("value",arrRes[2]);
+            myForm["exp_from"].setAttribute("value",arrRes[3]);
+            myForm["exp_to"].setAttribute("value",arrRes[4]);
+            myForm["exp_location"].setAttribute("value",arrRes[5]);
+            myForm["exp_des"].value = arrRes[6];
+        }
+        else{
+            console.log("error in GEt")
+        }
+    }
+}

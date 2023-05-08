@@ -10,7 +10,13 @@
         while($res = $result -> fetch_assoc())
         {
             $root = $dom -> createElement("div");
-            $root -> setAttribute("class", "row");
+            $root -> setAttribute("class", "row "."exp_class");
+            $root -> setAttribute("type", "button");
+            $root -> setAttribute("data-mdb-toggle","modal");
+            $root -> setAttribute("data-mdb-target", "#exp_form_modal");
+            // $root -> setAttribute("onclick","updateExp(this.id)");
+            $root -> setAttribute("id",$res["id"]);
+            // $root -> setAttribute("data-id", "exp_".$res["id"]);
             $dom -> appendChild($root);
 
             $col1 = $dom -> createElement("div");

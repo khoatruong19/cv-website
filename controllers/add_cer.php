@@ -1,7 +1,41 @@
 <?php
     include '../pages/dbcontroller.php';
-    if($_SERVER["REQUEST_METHOD"] === "POST")
+    if($_SERVER["REQUEST_METHOD"] === "GET")
     {
+        if(isset($_GET['id']))
+        {
+            $id = $_GET['id'];
+            $result = $conn -> prepare("select * from certificates where id = ?");
+            $result -> bind_param("i",$id);
+            $result -> execute();
+            $res = $result -> get_result();
+            if ($res->num_rows > 0) {
+                $row = $res->fetch_assoc(); // fetch the row
+                // print out the columns
+                echo $row["id"]."?";
+                echo $row["certificate_name"]."?";
+                echo $row["issue_organization"]."?";
+                echo $row["start_date"]."?" ;
+                echo $row["end_date"]."?";
+                echo  $row["credential_url"]."?";
+                echo $row["description"];
+            } else {
+                echo "No results found.";
+            }
+        }
+        else if(isset($_GET['delete_id']))
+        {
+            $id = $_GET['delete_id'];
+            $result = $conn -> prepare("delete from certificates where id = ?");
+            $result -> bind_param('i',$id);
+            $result -> execute();
+            echo "successfully delete";
+        }
+    }
+    else if($_SERVER["REQUEST_METHOD"] === "POST")
+    {
+
+        $id = $_POST["id"];
         $name = $_POST["cer_name"];
         $organization = $_POST["cer_organization"];
         $from = $_POST["cer_from"];
@@ -10,40 +44,35 @@
         $description = $_POST["cer_des"];
         $cv_id = 2;
 
+        $exists = $conn->prepare("SELECT COUNT(*) FROM certificates WHERE " .
+        "certificate_name=? and issue_organization=? and start_date=? and " .
+        "end_date=? and credential_url= ? and description=? and cv_id=?");
+
+        $exists -> bind_param("ssssssi",$name, $organization, $from, $to, $url, $description, $cv_id);
+        $exists -> execute();
+        $res = $exists -> get_result();
+        $Row = $res -> fetch_array();
+        if($Row[0] > 0) return;
+
+
+        $result = $conn -> prepare("select * from certificates where id = ?");
+        $result -> bind_param("i",$id);
+        $result -> execute();
+        $res = $result -> get_result();
+        if($res -> num_rows > 0)
+        {
+            $update = $conn -> prepare("update certificates set certificate_name=?, issue_organization=?, start_date=?, " .
+                                        "end_date=?, credential_url= ?, description=?,cv_id=? where id = ?");
+            $update -> bind_param("ssssssii",$name, $organization, $from, $to, $url, $description, $cv_id, $id);
+            $update -> execute();
+
+            return;
+        }
+
+
         $stmt = $conn->prepare("INSERT INTO certificates(certificate_name, issue_organization, start_date, end_date, credential_url, description, cv_id) VALUES(?,?,?,?,?,?,?)");
         $stmt->bind_param("ssssssi", $name, $organization, $from, $to, $url, $description, $cv_id);
         $stmt->execute();
-
-        $dom = new DOMDocument();
-        $root = $dom -> createElement("div");
-        $root -> setAttribute("class", "row");
-        $dom -> appendChild($root);
-
-        $col1 = $dom -> createElement("div");
-        $col1 -> setAttribute("class", "col-1");
-        $i_tag = $dom -> createElement("i");
-        $i_tag -> setAttribute("class", "far fa-circle-check fa-2x");
-        $i_tag -> setAttribute("style", "color: rgb(76, 160, 230)");
-        $col1 -> appendChild($i_tag);
-        $root -> appendChild($col1);
-
-        $col9 = $dom -> createElement("div");
-        $col9 -> setAttribute("class", "col-9");
-        $h5 = $dom -> createElement("h5");
-        $h5 -> setAttribute("class", "mt-0 mb-1");
-        $h5 -> textContent = $name;
-        $p = $dom -> createElement("p");
-        $p -> setAttribute("class", "text-secondary fw-light custom_fs");
-        $p -> textContent = "$from to $to";
-        $col9 -> appendChild($h5);
-        $col9 -> appendChild($p);
-
-        $root -> appendChild($col9);
-        $hr = $dom -> createElement("hr");
-        $hr -> setAttribute("style", "border-top: 1px solid rgb(233,231,231);");
-        $root -> appendChild($hr);
-
-        echo ($dom -> saveHTML());
     }
 
 ?>
