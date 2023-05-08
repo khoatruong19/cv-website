@@ -27,15 +27,25 @@ require __DIR__ . '/components/header.php';
         if ($password != $confirm_password) {
             $error_msg = 'Passwords do not match';
         } else {
-            // Hash the password
-            // $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+            // Generate unique ID
+            $id_user = rand(100000, 999999);
+            $query_check_id = "SELECT id_user FROM users WHERE id_user = '$id_user'";
+            $result_check_id = mysqli_query($conn, $query_check_id);
+            while (mysqli_num_rows($result_check_id) > 0) {
+                $id_user = rand(100000, 999999);
+                $query_check_id = "SELECT id_user FROM users WHERE id_user = '$id_user'";
+                $result_check_id = mysqli_query($conn, $query_check_id);
+            }
+
 
             // Insert user data into the database
-            $query = "INSERT INTO users (first_name, last_name, username, password) VALUES ('$first_name', '$last_name', '$username', '$password')";
+            $query = "INSERT INTO users (id_user, first_name, last_name, username, password) VALUES ('$id_user', '$first_name', '$last_name', '$username', '$password')";
             $result = mysqli_query($conn, $query);
+            $query1 = "INSERT INTO cvs (id_user, first_name, last_name ) VALUES ('$id_user', '$first_name', '$last_name')";
+            $result1 = mysqli_query($conn, $query1);
 
             // Check if the insert was successful
-            if ($result) {
+            if ($result and $result1) {
                 $success_msg = 'Registration successful';
             } else {
                 $error_msg = 'Registration failed';

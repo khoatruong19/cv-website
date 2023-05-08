@@ -1,7 +1,7 @@
 <?php
     $servername = "localhost";
     $username = "root";
-    $password = "root";
+    $password = "";
     $dbname = "cv_web";
     $conn = "";
 
