@@ -4,13 +4,13 @@ require __DIR__ . '/components/header.php';
 
 <?php
 // Start the session
-session_start();
-
 // Check if the user is already logged in, then redirect to home page
 if (isset($_SESSION['username'])) {
     header('Location: /');
-    exit;
 }
+
+include "dbcontroller.php";
+
 
 // Set the error message to be empty
 $errorMessage = '';
@@ -26,7 +26,7 @@ if (isset($_POST['login_btn'])) {
         $errorMessage = 'Invalid username or password.';
     } else {
         // Connect to the database
-        $conn = mysqli_connect('localhost', 'root', '', 'cv_web');
+        // $conn = mysqli_connect('localhost', 'root', 'root', 'cv_web');
 
         // Check if the connection was successful
         if (!$conn) {
@@ -43,13 +43,15 @@ if (isset($_POST['login_btn'])) {
 
         // Check if the query was successful and if the user exists
         if (mysqli_num_rows($result) == 1) {
-            // The user is authenticated, so set the session variables and redirect to home page
             $_SESSION['username'] = $username;
+            // Store username and logged-in status in local storage
+            $_SESSION["valid"] = true;
             header('Location: /');
             exit;
         } else {
             $errorMessage = 'Invalid username or password.';
         }
+        
     }
 }
 ?>

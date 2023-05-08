@@ -29,6 +29,17 @@
         }
       }
     }
+<<<<<<< HEAD
+=======
+    function clearAllFilter(){
+    const formEle = document.getElementsByClassName("form-data") 
+    for(let count = 0; count < formEle.length; count++){
+       if(formEle[count].name === "position" || formEle[count].name === "level" || 
+       formEle[count].name === "experience") formEle[count].value = "all"
+       else formEle[count].value = ""
+    }
+}
+>>>>>>> main
   </script>
 
 </head>
@@ -48,7 +59,11 @@
         <form id="filter-form" onsubmit="handleSubmitFilter();return false;" action="#" method="post" class="flex flex-col gap-7 w-[40%] h-[80vh] shadow-2xl bg-white translate-y-[-10%] translate-x-[5%] rounded-lg overflow-y-auto py-3 px-5">
             <div class="flex items-center justify-between">
                 <h2 class="text-3xl font-semibold">Filter</h2>
+<<<<<<< HEAD
                 <span class="text-xl text-red-500 font-bold hover:opacity-70 cursor-pointer">Clear all</span>
+=======
+                <span onclick="clearAllFilter()" class="text-xl text-red-500 font-bold hover:opacity-70 cursor-pointer">Clear all</span>
+>>>>>>> main
             </div>
             <?php require __DIR__ . '/components/divider.php';  ?> 
             <div class="flex items-center gap-5">

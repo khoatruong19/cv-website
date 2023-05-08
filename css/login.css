@@ -86,6 +86,9 @@
 .register .container h1{
     font-size: 35px;
 }
+.register .container h4{
+    margin-top:-2em;
+}
 .register .container h4 a{
     color:#B4D3F0;
 }

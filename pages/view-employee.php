@@ -7,6 +7,7 @@
 <body>
 
 <?php 
+<<<<<<< HEAD
     include "dbcontroller.php";
     $id = $_GET['id'];
     $sql = "SELECT * FROM cvs WHERE id = 1";
@@ -28,40 +29,74 @@
 ?>
 
 <div class="container" style="width: 70vw">
+=======
+    $sql = 'SELECT '
+?>
+
+<div class="container">
+>>>>>>> main
     <div class="row short-des">
         <div class="col-sm-4 user-image">
             <img src="https://images.unsplash.com/photo-1543610892-0b1f7e6d8ac1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80" alt="" class="w-100 m-0">
         </div>
         <div class="col-sm-8 pl-6">
             <h1 class="username row">
+<<<<<<< HEAD
             <div class="col fs-1 fw-bold mb-3"><span><?php echo "$first_name"?></span> <span><?php $array = array(1 => 'foo', 2 => 'bar'); echo "$last_name"; echo `<script>alert($array);</script>`;?></span></div>
             </h1>
             <div class="row mb-3">
                 <div class="col">
                     <span class="fw-bold h5">Short description</span><br>
                     <span class="fw-light p"><?php echo "$bio"?></span>
+=======
+                <div class="col fs-1 fw-bold mb-3">John Doe</div>
+            </h1>
+            <div class="row mb-3">
+                <div class="col">
+                    <span class="fw-bold">Short description</span><br>
+                    <span class="fw-light">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex dolorem alias impedit maxime odio iusto dolore aut facilis, quod assumenda debitis, unde quo! Similique, tempora temporibus. Maiores labore aperiam odio!</span>
+>>>>>>> main
                 </div>
             </div>
             <div class="row mb-3">
                 <div class="col">
+<<<<<<< HEAD
                     <span class="fw-bold h5">Currently</span><br>
                     <span class="fw-light p">Front-end developer</span>
+=======
+                    <span class="fw-bold">Currently</span><br>
+                    <span class="fw-light">Front-end developer</span>
+>>>>>>> main
                 </div>
             </div>
             <div class="row mb-3">
                 <div class="col">
+<<<<<<< HEAD
                     <span class="fw-bold h5">Skills</span><br>
                     <span class="fw-light p">ReactJS</span>
+=======
+                    <span class="fw-bold">Skills</span><br>
+                    <span class="fw-light">ReactJS</span>
+>>>>>>> main
                 </div>
             </div>
             <div class="contacts row">
                 <div class="col">
+<<<<<<< HEAD
                     <span class="fw-bold h5">Email</span><br>
                     <span class="fw-light p">whatever</span>
                 </div>
                 <div class="col">
                     <span class="fw-bold h5">Phonenumber</span><br>
                     <span class="fw-light p">whatever</span>
+=======
+                    <span class="fw-bold">Email</span><br>
+                    <span class="fw-light">whatever</span>
+                </div>
+                <div class="col">
+                    <span class="fw-bold">Phonenumber</span><br>
+                    <span class="fw-light">whatever</span>
+>>>>>>> main
                 </div>
             </div>
         </div>
@@ -72,7 +107,11 @@
                 <h2>Experience</h2>
                 <div class="category-item">
                     <div class="brief mt-6">
+<<<<<<< HEAD
                         <div class="title-2 fs-5 fw-bold"><?php echo "$job_title"?></div>
+=======
+                        <div class="title-2 fs-5 fw-bold"><?php echo "Creative director";?></div>
+>>>>>>> main
                         <span class="fw-light">(2018 - 2020)</span>
                     </div>
                     <span class="fw-bold fst-italic mb-6">Company name/Company location</span>
