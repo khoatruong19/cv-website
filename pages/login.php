@@ -9,6 +9,9 @@ if (isset($_SESSION['username'])) {
     header('Location: /');
 }
 
+include "dbcontroller.php";
+
+
 // Set the error message to be empty
 $errorMessage = '';
 
@@ -23,7 +26,7 @@ if (isset($_POST['login_btn'])) {
         $errorMessage = 'Invalid username or password.';
     } else {
         // Connect to the database
-        $conn = mysqli_connect('localhost', 'root', '', 'cv_web');
+        // $conn = mysqli_connect('localhost', 'root', 'root', 'cv_web');
 
         // Check if the connection was successful
         if (!$conn) {

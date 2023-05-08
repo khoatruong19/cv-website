@@ -4,6 +4,8 @@ const cvsListEle = document.querySelector("#cvs-list")
 const pagination = document.querySelector("#pagination");
 const searchJobTitleEle = document.querySelector("#job-title-input") 
 
+
+
 function renderPagination(totalItems, page){
     pagination.innerHTML = "";
     for(let i = 1; i <= totalItems; i++){
