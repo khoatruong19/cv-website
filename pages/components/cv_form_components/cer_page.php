@@ -75,5 +75,5 @@
         <script>
 
         </script>
-    <!-- <script src="../js/cv_form_js/CerForm.js"></script> -->
+    <script src="../js/cv_form_js/CerForm.js"></script>
 </div>

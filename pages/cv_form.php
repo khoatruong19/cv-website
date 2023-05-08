@@ -40,9 +40,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="../styles/cv_form.css">
     <link rel="stylesheet" href="../scss/test_cus.css">
-    <script src="../js/cv_form_js/CerForm.js"></script>
-    <script src="../js/cv_form_js/EduForm.js"></script>
-    <!-- <script src="../js/cv_form_js/ExpForm.js"></script> -->
 
 </head>
 <!-- <body> -->

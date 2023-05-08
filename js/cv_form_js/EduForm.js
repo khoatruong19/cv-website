@@ -17,7 +17,7 @@ xhttp_edu.send();
 function deleteEduForm()
 {
     const form = document.forms["edu_form"];
-    const edu_form_id = form["edu_deparment"].getAttribute("id");
+    const edu_form_id = form["edu_department"].getAttribute("id");
     var url = `../controllers/add_edu.php?delete_id=${edu_form_id}`;
 
     let deleteReq = new XMLHttpRequest();
@@ -55,6 +55,8 @@ function submitEduForm()
     for (const pair of formData.entries()) {
         console.log(pair[0] + ': ' + pair[1]);
     }
+    let cer_form_id = form["edu_department"].getAttribute("id");
+    formData.append('id',cer_form_id);
 
     let start_date = form["edu_from"].value;
     let start_parts = start_date.split("-");
@@ -66,6 +68,7 @@ function submitEduForm()
 
     formData.set("edu_from",formatted_start);
     formData.set("edu_to",formatted_end);
+    console.log("POST to Show Edu:")
     for (const pair of formData.entries()) {
         console.log(pair[0] + ': ' + pair[1]);
     }
@@ -76,6 +79,7 @@ function submitEduForm()
     xhr.onload = function(){
         if(xhr.status === 200)
         {
+            console.log("submit")
             var loadfull = new XMLHttpRequest();
             loadfull.open('GET', '../controllers/show_edu.php', true);
 

@@ -4,20 +4,8 @@ xhttp_exp.open('GET', '../controllers/show_exp.php', true);
 xhttp_exp.onload = function(){
     if(xhttp_exp.status === 200)
     {
-        console.log("ok")
         let space = document.getElementById("exp_space");
         space.innerHTML =  xhttp_exp.responseText;
-
-        console.log("hihihi")
-        const updateBtns = document.querySelectorAll('.exp_class');
-        console.log(updateBtns)
-        updateBtns.forEach(function(updateBtn) {
-        const id = updateBtn.getAttribute('id');
-        console.log("id: ",id);
-        updateBtn.addEventListener('click', function() {
-            updateExp(id);
-        });
-        });
     }
     else{
         console.error('Error: ' + xhttp_exp.status);
@@ -25,19 +13,22 @@ xhttp_exp.onload = function(){
 }
 xhttp_exp.send();
 
-
 function deleteExpForm()
 {
+    console.log("delete EXP")
     const form = document.forms["exp_form"];
-    const exp_form_id = form["exp_deparment"].getAttribute("id");
+    console.log("form", form);
+    const exp_form_id = form["exp_job"].getAttribute("id");
+    console.log(exp_form_id);
     var url = `../controllers/add_exp.php?delete_id=${exp_form_id}`;
-
+    console.log(url);
     let deleteReq = new XMLHttpRequest();
     deleteReq.open('GET',url, true);
     deleteReq.send();
     deleteReq.onload = function(){
         if(deleteReq.status === 200)
         {
+            console.log("done delete EXP");
             var loadfull = new XMLHttpRequest();
             loadfull.open('GET', '../controllers/show_exp.php', true);
 
@@ -68,6 +59,9 @@ function submitExpForm()
         console.log(pair[0] + ': ' + pair[1]);
     }
     console.log(form["exp_from"].value);
+
+    let cer_form_id = form["exp_job"].getAttribute("id");
+    formData.append('id',cer_form_id);
 
     let start_date = form["exp_from"].value;
     let start_parts = start_date.split("-");
