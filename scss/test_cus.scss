@@ -1,0 +1,27 @@
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/mixins";
+@import "../node_modules/bootstrap/scss/list-group";
+
+$list-color:  #B4D3F0;
+$border-color: #bbb;
+$active-list-color: #97c7f4;
+
+.list-group-item {
+    background-color: $list-color;
+    color: #333;
+    border-color: #ddd;
+    &:hover {
+        // background-color: darken($list-color, 10%);
+        background-color: #97c7f4;
+        color: #fff;
+        border-color: #97c7f4;
+    }
+}
+
+.list-group {
+    // --bs-list-group-active-bg: rgb(100, 99, 99);
+    --bs-list-group-active-bg: #9ec6ec;
+
+    --bs-list-group-active-border-color: #97c7f4;
+}

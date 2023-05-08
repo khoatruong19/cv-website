@@ -1,10 +1,8 @@
 var handleSubmitFilter
 
-const cvsListEle = document.querySelector("#cvs-list") 
+const cvsListEle = document.querySelector("#cvs-list")
 const pagination = document.querySelector("#pagination");
-const searchJobTitleEle = document.querySelector("#job-title-input") 
-
-
+const searchJobTitleEle = document.querySelector("#job-title-input")
 
 function renderPagination(totalItems, page){
     pagination.innerHTML = "";
@@ -22,7 +20,7 @@ handleSubmitFilter = (page = 1, onlyJobTitle = false) => {
         for(let count = 0; count < formEle.length; count++){
             if(formEle[count].name){
                 formData.append(formEle[count].name, formEle[count].value)
-            } 
+            }
         }
     }
     formData.append("page", page)
@@ -32,7 +30,7 @@ handleSubmitFilter = (page = 1, onlyJobTitle = false) => {
 
     ajax_request.open("POST", `find-employee-process`, true)
 
-    ajax_request.send(formData)  
+    ajax_request.send(formData)
 
     ajax_request.onreadystatechange = function (){
         if(ajax_request.readyState == 4 && ajax_request.status == 200){
@@ -40,6 +38,7 @@ handleSubmitFilter = (page = 1, onlyJobTitle = false) => {
             cvsListEle.innerHTML = ""
             const value = JSON.parse(this.responseText)
             value.cvs.forEach(cv => cvsListEle.innerHTML += `
+            <a href='http://localhost/view-employee?id=${cv.id}'>
                 <div class="px-5 py-4 h-[160px] flex items-center shadow-xl hover:shadow-2xl cursor-pointer rounded-2xl bg-white gap-4">
                     <img class="w-24 h-24 rounded-full object-cover" alt="cv-avatar" src="https://www.nicepng.com/png/detail/73-735136_one-guy-web-developer-avatar.png" />
                     <div class="flex flex-col gap-1">
@@ -48,8 +47,9 @@ handleSubmitFilter = (page = 1, onlyJobTitle = false) => {
                         <p class="text-base font-medium text-gray-400">${cv.address}</p>
                     </div>
                 </div>
+            </a>
             `)
-            
+
             if(value.total > 3) {
                 const total = parseInt(value.total)
                 const real = parseInt(total / 3);

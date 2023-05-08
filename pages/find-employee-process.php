@@ -15,7 +15,7 @@
         return " and A.$field like '%$fieldValue%'";
     }
     if(isset($_POST["position"]) || isset($_POST["level"]) || isset($_POST["experience"]) || isset($_POST["skills"]) || isset($_POST["location"])){
-    
+
     $position = $_POST["position"] ?? "all";
     $level = $_POST["level"] ?? "all";
     $experience = $_POST["experience"] ?? "all";
@@ -51,7 +51,7 @@
     $limitSql .=" limit 3 offset $offset";
 
     $withExperienceCount = 0;
-    
+
     try{
         $result = mysqli_query($conn, $limitSql);
         $totalResult = mysqli_query($conn, $sql);
@@ -77,9 +77,9 @@
                     array_push($cvs, $row);
                 }
             }
-            
+
             $totalCvs = is_array($experience) ? $withExperienceCount : mysqli_num_rows($totalResult);
-            echo json_encode(array('total' => $totalCvs, 'cvs' => $cvs)); 
+            echo json_encode(array('total' => $totalCvs, 'cvs' => $cvs));
 
         } else {
             echo "No cvs found";
