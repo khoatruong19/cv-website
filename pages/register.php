@@ -27,21 +27,16 @@ require __DIR__ . '/components/header.php';
         if ($password != $confirm_password) {
             $error_msg = 'Passwords do not match';
         } else {
-            // Generate unique ID
-            $id_user = rand(100000, 999999);
-            $query_check_id = "SELECT id_user FROM users WHERE id_user = '$id_user'";
-            $result_check_id = mysqli_query($conn, $query_check_id);
-            while (mysqli_num_rows($result_check_id) > 0) {
-                $id_user = rand(100000, 999999);
-                $query_check_id = "SELECT id_user FROM users WHERE id_user = '$id_user'";
-                $result_check_id = mysqli_query($conn, $query_check_id);
-            }
-
-
             // Insert user data into the database
-            $query = "INSERT INTO users (id_user, first_name, last_name, username, password) VALUES ('$id_user', '$first_name', '$last_name', '$username', '$password')";
+            $query = "INSERT INTO users (first_name, last_name, username, password) VALUES ('$first_name', '$last_name', '$username', '$password')";
             $result = mysqli_query($conn, $query);
-            $query1 = "INSERT INTO cvs (id_user, first_name, last_name ) VALUES ('$id_user', '$first_name', '$last_name')";
+            // Get the id based on the username from the users table
+            $queryid = "SELECT id FROM users WHERE username='$username'";
+            $resultid = mysqli_query($conn, $queryid);
+            $row = mysqli_fetch_assoc($resultid);
+            $id = $row['id'];
+
+            $query1 = "INSERT INTO cvs (id_user, first_name, last_name ) VALUES ('$id', '$first_name', '$last_name')";
             $result1 = mysqli_query($conn, $query1);
 
             // Check if the insert was successful

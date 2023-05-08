@@ -23,7 +23,6 @@ if ($conn->query($sql) === TRUE) {
 $tableName = 'users';
 $sql = "CREATE TABLE IF NOT EXISTS $tableName (
   id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-  id_user INT(6) NOT NULL,
   first_name VARCHAR(30) NOT NULL,
   last_name VARCHAR(30) NOT NULL,
   username VARCHAR(30) NOT NULL,
