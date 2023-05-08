@@ -62,24 +62,24 @@
         <div class="col-12 col-sm-9 m-2">
             <div class="" id="item-0">
                 <?php
-                    require __DIR__ . '/components/cv_form_components/det_page.php';
+                    include('./components/cv_form_components/det_page.php');
                 ?>
             </div>
             <div class="" id="item-1">
                 <?php
-                    require __DIR__ . '/components/cv_form_components/exp_page.php';
+                    include('./components/cv_form_components/exp_page.php');
                 ?>
             </div>
             <div class="" id="item-2">
                 <?php
-                    require __DIR__ . '/components/cv_form_components/edu_page.php';
+                    include('./components/cv_form_components/edu_page.php');
                 ?>
             </div>
             <div class="pb-2" id="item-3">
                 <?php
-                    require __DIR__ . '/components/cv_form_components/cer_page.php';
+                    include('./components/cv_form_components/cer_page.php');
                 ?>
-            </div> 
+            </div>
         </div>
 </div>
 </body>
