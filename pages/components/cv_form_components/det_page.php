@@ -61,7 +61,13 @@
             </div>
             <div class="col-md-8">
                 <label for="det_skills" class="form-label">Skills</label>
-                <input type="text" class="form-control border-input shadow" id="det_skills">
+                <input
+                    id="skills-inp"
+                    type="text"
+                    name="skills"
+                    autofocus
+                    class="form-control border-input shadow"
+                />
             </div>
             <div class="col-12">
                 <label for="det_bio" class="form-label">Bio</label>
@@ -77,3 +83,12 @@
         </div>
     </div>
 </div>
+
+<script src="https://unpkg.com/@yaireo/tagify"></script>
+<script src="https://unpkg.com/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>
+<script>
+    // The DOM element you wish to replace with Tagify
+    var input = document.getElementById('skills-inp');
+    // initialize Tagify on the above input node reference
+    new Tagify(input);
+</script>
