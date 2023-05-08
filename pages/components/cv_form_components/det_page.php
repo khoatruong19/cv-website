@@ -25,8 +25,6 @@
                 const checkbox = document.getElementById("publish_checkbox");
                 checkbox.onchange = function(){
                     if (checkbox.checked === true) {
-                        <?php mysqli_query($conn, "UPDATE cvs SET is_published = 1 WHERE id_user = 2");?>
-                        <?php mysqli_query($conn, "UPDATE cvs SET is_published = 0 WHERE id_user = 2");?>
                         $.post('../controllers/detail_public.php');
                     }
                     else if (checkbox.checked === false) {
