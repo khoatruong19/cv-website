@@ -51,10 +51,12 @@
                 <a class="text-2xl font-semibold hover:text-violet-400" href="/login">LOGIN</a>
             </div>
         </div>
-        <div class="cursor-pointer hover:shadow-2xl flex flex-col items-center justify-center mt-[78px] ml-auto w-[400px] h-[200px] bg-white shadow-lg rounded-lg">
-            <img class="w-[30%]" alt="edit-user" src="../images/edit-user.png" />
-            <h1 class="text-2xl font-semibold mt-5">Your CV</h1>
-        </div>
+        <a href='http://localhost/cv-form'>
+          <div class="cursor-pointer hover:shadow-2xl flex flex-col items-center justify-center mt-[78px] ml-auto w-[400px] h-[200px] bg-white shadow-lg rounded-lg">
+              <img class="w-[30%]" alt="edit-user" src="../images/edit-user.png" />
+              <h1 class="text-2xl font-semibold mt-5">Your CV</h1>
+          </div>
+        </a>
     </div>
 
     <p class="absolute top-[50%] left-[10%] translate-y-[-50%] text-8xl leading-[8rem] font-medium">YOU ARE </br> HERE TO ...</p>

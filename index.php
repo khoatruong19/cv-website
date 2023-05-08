@@ -17,6 +17,12 @@ Route::add('/find-employee', function() {
 Route::add('/login', function() {
     require __DIR__ . '/pages/login.php';
 });
+Route::add('/find-employee-process', function() {
+    require __DIR__ . '/pages/find-employee-process.php';
+});
+Route::add('/cv-form', function() {
+    require __DIR__ . '/pages/cv_form.php';
+});
 Route::add('/register', function() {
     require __DIR__ . '/pages/register.php';
 });
