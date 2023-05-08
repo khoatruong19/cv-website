@@ -9,7 +9,7 @@
 <?php 
     include "dbcontroller.php";
     $id = $_GET['id'];
-    $sql = "SELECT * FROM cvs WHERE id = 1";
+    // $sql = "SELECT * FROM cvs WHERE id = 1";
     $result = mysqli_query($conn, $sql);
     // echo $result;
     $row = mysqli_fetch_assoc($result);
@@ -23,6 +23,8 @@
     $job_title = $row['job_title'];
     $level = $row['level'];
     $skills = $row['skills'];
+    $id = $_GET["id"];
+    echo $id;
 ?>
 
 <div class="container" style="width: 70vw">

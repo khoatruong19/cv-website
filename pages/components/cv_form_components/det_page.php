@@ -42,11 +42,22 @@
             </div>
             <div class="col-md-8">
                 <label for="det_jobTitle" class="form-label">Job Title</label>
-                <input type="text" class="form-control border-input shadow" id="det_jobTitle">
+                <select name="jobTitle" id="det_jobTitle" class="form-control border-input shadow">
+                    <option selected value=""></option>
+                    <option value="Front-end Developer">Front-end Developer</option>
+                    <option value="Back-end Developer">Back-end Developer</option>
+                    <option value="Full-stack Developer">Full-stack Developer</option>
+                </select>
+                <!-- <input type="text" class="form-control border-input shadow" id="det_jobTitle"> -->
             </div>
             <div class="col-md-8">
-                <label for="det_jobTitle" class="form-label">Level</label>
-                <input type="text" class="form-control border-input shadow" id="det_jobTitle">
+                <label for="det_jobLevel" class="form-label">Level</label>
+                <select name="jobLevel" id="det_jobLevel" class="form-control border-input shadow">
+                    <option selected value=""></option>
+                    <option value="Front-end Developer">Front-end Developer</option>
+                    <option value="Back-end Developer">Back-end Developer</option>
+                    <option value="Full-stack Developer">Full-stack Developer</option>
+                </select>
             </div>
             <div class="col-md-8">
                 <label for="det_skills" class="form-label">Skills</label>
