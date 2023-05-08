@@ -25,10 +25,10 @@
                 const checkbox = document.getElementById("publish_checkbox");
                 checkbox.onchange = function(){
                     if (checkbox.checked === true) {
-                        $.post('../controllers/detail_public.php');
+                        $.get('../controllers/detail_public.php');
                     }
                     else if (checkbox.checked === false) {
-                        $.post('../controllers/detail_private.php');
+                        $.get('../controllers/detail_private.php');
                     };
                 }
             </script>
