@@ -12,7 +12,7 @@
     catch(mysqli_sql_exception){
         echo "Fail to connect to database!";
     }
-    $userId = $_SESSION['user_id'];
+    // $userId = $_SESSION['user_id'];
 ?>
 
 <div class="cv_page_container position-relative" id="det_page">
@@ -25,27 +25,12 @@
                 const checkbox = document.getElementById("publish_checkbox");
                 checkbox.onchange = function(){
                     if (checkbox.checked === true) {
-                        //<?php mysqli_query($conn, "UPDATE cvs SET is_published = 1 WHERE id_user = $userId");?>
-                        //<?php mysqli_query($conn, "UPDATE cvs SET is_published = 0 WHERE id_user = $userId");?>
-                        $.ajax({
-                            type: "POST",
-                            url: "../controllers/detail_public.php",
-                            success: function(){
-
-                            }
-                        })
+                        <?php mysqli_query($conn, "UPDATE cvs SET is_published = 1 WHERE id_user = 2");?>
+                        <?php mysqli_query($conn, "UPDATE cvs SET is_published = 0 WHERE id_user = 2");?>
+                        $.post('../controllers/detail_public.php');
                     }
                     else if (checkbox.checked === false) {
-                        let http = new XMLHttpRequest();
-                        http.open('GET', '../controllers/detail_private.php', true);
-
-                        http.onload = function(){
-                            if (http.status === 200) {
-                                console.log(http.responseText);
-                                controller.innerHTML += http.responseText;
-                            }
-                        }
-                        http.send();
+                        $.post('../controllers/detail_private.php');
                     };
                 }
             </script>
