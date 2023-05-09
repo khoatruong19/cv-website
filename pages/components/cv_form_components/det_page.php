@@ -58,10 +58,10 @@
                 const checkbox = document.getElementById("publish_checkbox");
                 checkbox.onchange = function(){
                     if (checkbox.checked === true) {
-                        $.get('../controllers/detail_public.php');
+                        $.post('../controllers/detail_public.php');
                     }
                     else if (checkbox.checked === false) {
-                        $.get('../controllers/detail_private.php');
+                        $.post('../controllers/detail_private.php');
                     };
                 }
             </script>
@@ -84,11 +84,11 @@
             <div class="row g-4">
                 <div class="col-md-4">
                     <label for="det_firstName" class="form-label">First Name</label>
-                    <input name="first_name" type="text" class="form-control border-input " id="first_name"">
+                    <input name="first_name" type="text" class="form-control border-input " id="first_name">
                 </div>
                 <div class="col-md-4">
                     <label for="det_lastName" class="form-label">Last Name</label>
-                    <input name="last_name" type="text" class="form-control border-input shadow" id="last_name"">
+                    <input name="last_name" type="text" class="form-control border-input shadow" id="last_name">
                 </div>
             </div>
             <!-- <div class="col-md-4"></div> -->
@@ -158,7 +158,7 @@
 
 <script src="https://unpkg.com/@yaireo/tagify"></script>
 <script src="https://unpkg.com/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>
-<!-- <script>
+<script>
     // The DOM element you wish to replace with Tagify
     var input = document.getElementById('skills-inp');
     // initialize Tagify on the above input node reference
@@ -174,27 +174,6 @@
         document.getElementById("det_level").value = getSavedValue("det_level");
         document.getElementById("skills-inp").value = getSavedValue("skills-inp");
         document.getElementById("det_bio").value = getSavedValue("det_bio");
-
-
-        function uploadImage(){
-            let file_data = $("#image_file").prop("files")[0];
-            let form_data = new FormData();
-            form_data.append("file", file_data);
-            $.ajax({
-                url: "load.php",
-                type: "POST",
-                dataType: "script",
-                cache: false,
-                contentType: false,
-                processData: false,
-                data: form_data,
-
-                success: function(data){
-                    if (data === 1) alert("Successful");
-                    else alert("Unable to upload image");
-                }
-            });
-        }
 
         function saveValue(e){
             var id = e.id;
@@ -214,8 +193,8 @@
             const formEle = document.getElementsByClassName("form-control");
             for(let count = 0; count < formEle.length; count++){
                 if(formEle[count].name){
-                    formData.append(formEle[count].name, formEle[count].value)
+                    form_data.append(formEle[count].name, formEle[count].value)
                 }
             }
         }
-    </script> -->
+    </script>
