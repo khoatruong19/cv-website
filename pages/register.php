@@ -36,7 +36,12 @@ require __DIR__ . '/components/header.php';
             $row = mysqli_fetch_assoc($resultid);
             $id = $row['id'];
 
-            $query1 = "INSERT INTO cvs (id_user, first_name, last_name ) VALUES ('$id', '$first_name', '$last_name')";
+            // Add user's avatar to the cvs table
+            $avatar_url = 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/1200px-Default_pfp.svg.png';
+            $avatar_blob = file_get_contents($avatar_url);
+            $avatar_base64 = base64_encode($avatar_blob);
+
+            $query1 = "INSERT INTO cvs (id_user, first_name, last_name, avatar) VALUES ('$id', '$first_name', '$last_name', '$avatar_base64')";
             $result1 = mysqli_query($conn, $query1);
 
             // Check if the insert was successful
