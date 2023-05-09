@@ -27,15 +27,20 @@ require __DIR__ . '/components/header.php';
         if ($password != $confirm_password) {
             $error_msg = 'Passwords do not match';
         } else {
-            // Hash the password
-            // $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
             // Insert user data into the database
             $query = "INSERT INTO users (first_name, last_name, username, password) VALUES ('$first_name', '$last_name', '$username', '$password')";
             $result = mysqli_query($conn, $query);
+            // Get the id based on the username from the users table
+            $queryid = "SELECT id FROM users WHERE username='$username'";
+            $resultid = mysqli_query($conn, $queryid);
+            $row = mysqli_fetch_assoc($resultid);
+            $id = $row['id'];
+
+            $query1 = "INSERT INTO cvs (id_user, first_name, last_name ) VALUES ('$id', '$first_name', '$last_name')";
+            $result1 = mysqli_query($conn, $query1);
 
             // Check if the insert was successful
-            if ($result) {
+            if ($result and $result1) {
                 $success_msg = 'Registration successful';
             } else {
                 $error_msg = 'Registration failed';
