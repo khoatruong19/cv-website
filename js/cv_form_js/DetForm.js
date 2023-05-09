@@ -1,3 +1,5 @@
+const 
+
 handleSubmitFilter = function(){
     const form_data = new FormData();
     const formEle = document.getElementsByClassName("form-control");
