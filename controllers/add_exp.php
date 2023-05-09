@@ -41,7 +41,7 @@
         $to = $_POST["exp_to"];
         $location = $_POST["exp_location"];
         $description = $_POST["exp_des"];
-        $user_id = $stmt -> bind_param("i",$_SESSION["userId"]);
+        $user_id = $_SESSION["userId"];
 
         $exists = $conn->prepare("SELECT COUNT(*) FROM experiences WHERE " .
         "job_title=? and company=? and start_date=? and " .
