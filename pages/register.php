@@ -1,5 +1,5 @@
-<?php 
-require __DIR__ . '/components/header.php'; 
+<?php
+require __DIR__ . '/components/header.php';
 ?>
 
 
@@ -39,9 +39,8 @@ require __DIR__ . '/components/header.php';
             // Add user's avatar to the cvs table
             $avatar_url = 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/1200px-Default_pfp.svg.png';
             $avatar_blob = file_get_contents($avatar_url);
-            $avatar_base64 = base64_encode($avatar_blob);
 
-            $query1 = "INSERT INTO cvs (id_user, first_name, last_name, avatar) VALUES ('$id', '$first_name', '$last_name', '$avatar_base64')";
+            $query1 = "INSERT INTO cvs (id_user, first_name, last_name, avatar) VALUES ('$id', '$first_name', '$last_name', '$avatar_blob')";
             $result1 = mysqli_query($conn, $query1);
 
             // Check if the insert was successful
@@ -76,7 +75,7 @@ require __DIR__ . '/components/header.php';
                     <label for="password">Confirm Password</label><br>
                     <input type="password" id="confirm_password" name="confirm_password" placeholder="Type your password" minlength="8" required><br></br>
                     <button type="submit" name="login_btn">SIGN UP</button>
-                </form> 
+                </form>
             </div>
             <h4>Already have an account<a href="/login"> Sign in</a></h4>
         </div>
