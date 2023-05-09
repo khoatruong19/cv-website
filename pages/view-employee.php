@@ -59,6 +59,10 @@
                     <span class="fw-bold h5">Currently</span><br>
                     <span class="fw-light p"><?php echo "$job_title"?></span>
                 </div>
+                <div class="col">
+                    <span class="fw-bold h5">Address</span><br>
+                    <span class="fw-light p"><?php echo "$address"?></span>
+                </div>
             </div>
             <div class="row mb-3">
                 <div class="col">
@@ -67,6 +71,10 @@
                     <script>
                         document.getElementById("skills").innerHTML = skills_string;
                     </script>
+                </div>
+                <div class="col">
+                    <span class="fw-bold h5">Level</span><br>
+                    <span class="fw-light p"><?php echo "$level"?></span>
                 </div>
             </div>
             <div class="contacts row">

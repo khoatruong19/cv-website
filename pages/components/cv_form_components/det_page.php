@@ -212,17 +212,17 @@
 </script>
 <script src="../js/cv_form_js/DetForm.js"></script>
 <script>
-                const checkbox = document.getElementById("publish_checkbox");
-               
-                checkbox.onchange = function(){
-                    if (checkbox.checked === true) {
-                        $.get('../controllers/detail_public.php');
-                    }
-                    else if (checkbox.checked === false) {
-                        $.get('../controllers/detail_private.php');
-                    };
-                }
-                if(isPublished) checkbox.checked = true;
-                else checkbox.checked = false;
-            </script>
+    const checkbox = document.getElementById("publish_checkbox");
+    
+    checkbox.onchange = function(){
+        if (checkbox.checked === true) {
+            $.get('../controllers/detail_public.php');
+        }
+        else if (checkbox.checked === false) {
+            $.get('../controllers/detail_private.php');
+        };
+    }
+    if(isPublished) checkbox.checked = true;
+    else checkbox.checked = false;
+</script>
 
