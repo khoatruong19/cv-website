@@ -31,11 +31,12 @@
     }
 
     $sql = "SELECT A.id, A.job_title , A.first_name, A.last_name, A.address, A.avatar, B.start_date from cvs as A";
-    $sql .= " LEFT OUTER JOIN (SELECT cv_id, min(start_date) AS start_date FROM experiences GROUP BY cv_id) as B ON A.id = B.cv_id";
+    $sql .= " LEFT OUTER JOIN (SELECT user_id, min(start_date) AS start_date FROM experiences GROUP BY user_id) as B ON A.id_user = B.user_id";
     $sql .= buildEqualQuery("job_title", $position, "all", true);
     $sql .= buildEqualQuery("level", $level, "all", !str_contains($sql, "where"));
     $sql .= buildLikeQuery("skills", $skills, "",!str_contains($sql, "where"));
     $sql .= buildLikeQuery("address", $location, "",!str_contains($sql, "where"));
+    $sql .= buildLikeQuery("is_published", 1, "",!str_contains($sql, "where"));
 
 
     if($experience !== "all"){
