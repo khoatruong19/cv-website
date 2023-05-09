@@ -12,14 +12,8 @@ $conn = new mysqli($servername, $username, $password, $dbname, $port);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-
-$sql = "CREATE DATABASE IF NOT EXISTS $dbname";
-if ($conn->query($sql) === TRUE) {
-    $conn->select_db($dbname);
-} else {
-    echo "Error creating database: " . $conn->error;
-}
-
+$conn -> query('use cv_web');
+$conn -> query('drop table if exists cvs');
 // Create users table
 $tableName = 'users';
 $sql = "CREATE TABLE IF NOT EXISTS $tableName (
@@ -42,7 +36,7 @@ $sql = "CREATE TABLE IF NOT EXISTS $tableName (
   email VARCHAR(50) NOT NULL,
   phone VARCHAR(20) NOT NULL,
   address VARCHAR(100) NOT NULL,
-  avatar VARCHAR(500),
+  avatar longblob not null,
   job_title VARCHAR(50) NOT NULL,
   level VARCHAR(50) NOT NULL,
   skills TEXT NOT NULL,

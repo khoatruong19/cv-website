@@ -42,13 +42,13 @@
         $to = $_POST["cer_to"];
         $url = $_POST["cer_url"];
         $description = $_POST["cer_des"];
-        $cv_id = 2;
+        $user_id = $_SESSION["userId"];
 
         $exists = $conn->prepare("SELECT COUNT(*) FROM certificates WHERE " .
         "certificate_name=? and issue_organization=? and start_date=? and " .
-        "end_date=? and credential_url= ? and description=? and cv_id=?");
+        "end_date=? and credential_url= ? and description=? and user_id=?");
 
-        $exists -> bind_param("ssssssi",$name, $organization, $from, $to, $url, $description, $cv_id);
+        $exists -> bind_param("ssssssi",$name, $organization, $from, $to, $url, $description, $user_id);
         $exists -> execute();
         $res = $exists -> get_result();
         $Row = $res -> fetch_array();
@@ -62,16 +62,16 @@
         if($res -> num_rows > 0)
         {
             $update = $conn -> prepare("update certificates set certificate_name=?, issue_organization=?, start_date=?, " .
-                                        "end_date=?, credential_url= ?, description=?,cv_id=? where id = ?");
-            $update -> bind_param("ssssssii",$name, $organization, $from, $to, $url, $description, $cv_id, $id);
+                                        "end_date=?, credential_url= ?, description=?,user_id=? where id = ?");
+            $update -> bind_param("ssssssii",$name, $organization, $from, $to, $url, $description, $user_id, $id);
             $update -> execute();
 
             return;
         }
 
 
-        $stmt = $conn->prepare("INSERT INTO certificates(certificate_name, issue_organization, start_date, end_date, credential_url, description, cv_id) VALUES(?,?,?,?,?,?,?)");
-        $stmt->bind_param("ssssssi", $name, $organization, $from, $to, $url, $description, $cv_id);
+        $stmt = $conn->prepare("INSERT INTO certificates(certificate_name, issue_organization, start_date, end_date, credential_url, description, user_id) VALUES(?,?,?,?,?,?,?)");
+        $stmt->bind_param("ssssssi", $name, $organization, $from, $to, $url, $description, $user_id);
         $stmt->execute();
     }
 

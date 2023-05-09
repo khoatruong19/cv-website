@@ -42,13 +42,16 @@
     <link rel="stylesheet" href="../scss/test_cus.css">
 
 </head>
+<?php
+    $_SESSION['userId'] = 1;
+?>
 <!-- <body> -->
 <body data-bs-spy="scroll" data-bs-target="#sidebar_list" data-bs-offset="0" class="scrollspy w-100" tabindex="0" style="overflow-x:hidden">
 
     <div class="row">
         <aside class="col-12 col-sm-2 p-0 d-flex flex-column sticky-top font_aside" style="height:100vh; background-color: #B4D3F0">
             <div class="text-center p-3 pb-0">
-                <img class="img-fluid rounded-circle my-4 p-1 d-none d-md-block shadow"src="https://impreza.us-themes.com/wp-content/uploads/paolo-bendandi-D-8XODEIr_s-unsplash.jpg" alt="profile picture" />
+                <img class="img-fluid rounded-circle my-4 p-1 d-none d-md-block shadow"src="../controllers/displayAva.php?user_id=<?php echo $_SESSION['userId']; ?>" alt="profile picture" />
             </div>
             <div class="d-block mb-4 d-flex justify-content-center align-items-center">
                 <p class="text-dark text-uppercase fw-bold custom_name">Huy Hieu</p>
@@ -79,6 +82,6 @@
 </html>
 
 <?php
-    $userId = $_SESSION["userId"];
-    echo $userId;
+    // $userId = $_SESSION["userId"];
+    // echo $userId;
 ?>

@@ -41,13 +41,13 @@
         $to = $_POST["edu_to"];
         $location = $_POST["edu_location"];
         $description = $_POST["edu_des"];
-        $cv_id = 2;
+        $user_id = $_SESSION["userId"];
 
         $exists = $conn->prepare("SELECT COUNT(*) FROM education WHERE " .
         "department=? and faculty=? and start_date=? and " .
-        "end_date=? and location= ? and description=? and cv_id=?");
+        "end_date=? and location= ? and description=? and user_id=?");
 
-        $exists -> bind_param("ssssssi",$department, $faculty, $from, $to, $location, $description, $cv_id);
+        $exists -> bind_param("ssssssi",$department, $faculty, $from, $to, $location, $description, $user_id);
         $exists -> execute();
         $res = $exists -> get_result();
         $Row = $res -> fetch_array();
@@ -61,15 +61,15 @@
         if($res -> num_rows > 0)
         {
             $update = $conn -> prepare("update education set department=?, faculty=?, start_date=?, " .
-                                        "end_date=?, location= ?, description=?,cv_id=? where id = ?");
-            $update -> bind_param("ssssssii",$department, $faculty, $from, $to, $location, $description, $cv_id, $id);
+                                        "end_date=?, location= ?, description=?,user_id=? where id = ?");
+            $update -> bind_param("ssssssii",$department, $faculty, $from, $to, $location, $description, $user_id, $id);
             $update -> execute();
 
             return;
         }
 
-        $stmt = $conn->prepare("INSERT INTO education(department, faculty, start_date, end_date, location, description, cv_id) VALUES(?,?,?,?,?,?,?)");
-        $stmt->bind_param("ssssssi", $department, $faculty, $from, $to, $location, $description, $cv_id);
+        $stmt = $conn->prepare("INSERT INTO education(department, faculty, start_date, end_date, location, description, user_id) VALUES(?,?,?,?,?,?,?)");
+        $stmt->bind_param("ssssssi", $department, $faculty, $from, $to, $location, $description, $user_id);
         $stmt->execute();
     }
 

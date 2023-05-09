@@ -1,5 +1,5 @@
-<?php 
-require __DIR__ . '/components/header.php'; 
+<?php
+require __DIR__ . '/components/header.php';
 ?>
 
 
@@ -7,7 +7,7 @@ require __DIR__ . '/components/header.php';
     // Define database connection constants
     define('DB_HOST', 'localhost');
     define('DB_USER', 'root');
-    define('DB_PASS', '');
+    define('DB_PASS', 'root');
     define('DB_NAME', 'cv_web');
 
     // Connect to the database
@@ -27,15 +27,24 @@ require __DIR__ . '/components/header.php';
         if ($password != $confirm_password) {
             $error_msg = 'Passwords do not match';
         } else {
-            // Hash the password
-            // $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
             // Insert user data into the database
             $query = "INSERT INTO users (first_name, last_name, username, password) VALUES ('$first_name', '$last_name', '$username', '$password')";
             $result = mysqli_query($conn, $query);
+            // Get the id based on the username from the users table
+            $queryid = "SELECT id FROM users WHERE username='$username'";
+            $resultid = mysqli_query($conn, $queryid);
+            $row = mysqli_fetch_assoc($resultid);
+            $id = $row['id'];
+
+            // Add user's avatar to the cvs table
+            $avatar_url = 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/1200px-Default_pfp.svg.png';
+            $avatar_blob = file_get_contents($avatar_url);
+
+            $query1 = "INSERT INTO cvs (id_user, first_name, last_name, avatar) VALUES ('$id', '$first_name', '$last_name', '$avatar_blob')";
+            $result1 = mysqli_query($conn, $query1);
 
             // Check if the insert was successful
-            if ($result) {
+            if ($result and $result1) {
                 $success_msg = 'Registration successful';
             } else {
                 $error_msg = 'Registration failed';
@@ -66,7 +75,7 @@ require __DIR__ . '/components/header.php';
                     <label for="password">Confirm Password</label><br>
                     <input type="password" id="confirm_password" name="confirm_password" placeholder="Type your password" minlength="8" required><br></br>
                     <button type="submit" name="login_btn">SIGN UP</button>
-                </form> 
+                </form>
             </div>
             <h4>Already have an account<a href="/login"> Sign in</a></h4>
         </div>
