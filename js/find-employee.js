@@ -40,7 +40,7 @@ handleSubmitFilter = (page = 1, onlyJobTitle = false) => {
             value.cvs.forEach(cv => cvsListEle.innerHTML += `
             <a href='http://localhost/view-employee?id=${cv.id}'>
                 <div class="px-5 py-4 h-[160px] flex items-center shadow-xl hover:shadow-2xl cursor-pointer rounded-2xl bg-white gap-4">
-                    <img class="w-24 h-24 rounded-full object-cover" alt="cv-avatar" src="https://www.nicepng.com/png/detail/73-735136_one-guy-web-developer-avatar.png" />
+           user_id=${cv.id_user}"         <img class="w-24 h-24 rounded-full object-cover" alt="cv-avatar" src="../controllers/displayAva.php? />
                     <div class="flex flex-col gap-1">
                         <h3 class="text-xl font-semibold">${cv.first_name + " " + cv.last_name}</h3>
                         <p class="text-base font-medium text-gray-400">${cv.job_title}</p>

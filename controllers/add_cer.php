@@ -1,4 +1,5 @@
 <?php
+    session_start();
     include '../pages/dbcontroller.php';
     if($_SERVER["REQUEST_METHOD"] === "GET")
     {

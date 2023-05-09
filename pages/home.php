@@ -48,7 +48,11 @@
         <div class="flex items-center justify-between">
             <?php require __DIR__ . '/components/row-logo.php'; ?>
             <div>
-                <a class="text-2xl font-semibold hover:text-violet-400" href="/login">LOGIN</a>
+                <p class="text-2xl font-semibold hover:text-violet-400" >
+                 Hello, <?php
+                    echo "{$_SESSION["firstName"]} {$_SESSION["lastName"]}";
+                  ?>
+                </p>
             </div>
         </div>
         <a href='http://localhost/cv-form'>

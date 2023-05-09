@@ -5,7 +5,6 @@
     }
     require __DIR__ . '../../../dbcontroller.php';
     $userId = $_SESSION['userId'];
-
     $sql = "SELECT * FROM cvs where id_user='$userId'";
     $first_name = ""; 
     $last_name = ""; 
@@ -61,17 +60,12 @@
         $bio = $_POST['bio'];
         $id_user = $_SESSION['userId'];
 
-        echo $first_name;
-        echo $level;
-        echo $job_title;
-
         if(strlen($skills) > 0){
             $skills = json_decode($skills);
             $skills = array_map('formatSkills', $skills);
             $skills = join(";",$skills);
         }
-
-        if(isset($_FILES['avatar']))
+        if(isset($_FILES['avatar']) && $_FILES['avatar']["name"] != "")
         {
             $file_name = $_FILES["avatar"]["name"];
             $file_size = $_FILES["avatar"]["size"];
@@ -91,14 +85,17 @@
                 $newImageName = uniqid() . '.' . $imageExtension;
 
                 $image = file_get_contents($file_tmp);
+                $stmt = $conn->prepare("UPDATE cvs SET first_name=?, last_name=?, email=?, phone=?, address=?, avatar=?, level=?, job_title=?, skills=?, bio=? WHERE id_user=?;");
+                $stmt->bind_param("ssssssssssi", $first_name, $last_name, $email, $phone, $address, $image, $level, $job_title, $skills, $bio, $id_user);
+                $stmt->execute();
+                $stmt->close();
             }
-
-            $stmt = $conn->prepare("UPDATE cvs SET first_name=?, last_name=?, email=?, phone=?, address=?,  level=?, skills=?, bio=? WHERE id_user=?;");
-            $stmt->bind_param("ssssssssi", $first_name, $last_name, $email, $phone, $address, $level, $skills, $bio, $id_user);
-            $stmt->execute();
-            $stmt->close();
+           
         }
-       
+        $stmt = $conn->prepare("UPDATE cvs SET first_name=?, last_name=?, email=?, phone=?, address=?, level=?, job_title=?, skills=?, bio=? WHERE id_user=?;");
+        $stmt->bind_param("sssssssssi", $first_name, $last_name, $email, $phone, $address, $level,$job_title, $skills, $bio, $id_user);
+        $stmt->execute();
+        $stmt->close();
     }
 ?>
 
@@ -122,7 +119,7 @@
                     <img class="img-fluid rounded-circle my-4 p-1 d-none d-md-block shadow" src="../controllers/displayAva.php?user_id=<?php echo $_SESSION['userId']; ?>" alt="profile picture" />
                 </div>
                 <div class="d-block mb-4 d-flex justify-content-center align-items-center">
-                    <input type="file" name="avatar" id="image_file">
+                    <input type="file" name="avatar" id="image_file" >
                     <!-- <button type="submit" onkeydown="uploadImage()" name="imagefile" id="image_upload" class="cus_next btn btn-primary rounded-3 d-block border-input text-dark shadow" style="background-color: rgb(214, 225, 242);">Upload</button> -->
                 </div>
             </div>

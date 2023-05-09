@@ -1,5 +1,6 @@
 <?php
     include '../pages/dbcontroller.php';
+    session_start();
     if($_SERVER["REQUEST_METHOD"] === "GET")
     {
         if(isset($_GET['id']))
@@ -42,7 +43,7 @@
         $location = $_POST["exp_location"];
         $description = $_POST["exp_des"];
         $user_id = $_SESSION["userId"];
-
+        echo $user_id;
         $exists = $conn->prepare("SELECT COUNT(*) FROM experiences WHERE " .
         "job_title=? and company=? and start_date=? and " .
         "end_date=? and company_location= ? and description=? and user_id=?");

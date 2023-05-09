@@ -8,7 +8,8 @@
 
 <?php 
     include "dbcontroller.php";
-    $id = $_SESSION['userId'];
+    // $id = $_SESSION['userId'];
+    $id = $_GET["id"];
     $sql = "SELECT * FROM cvs WHERE id = $id";
     $result = mysqli_query($conn, $sql);
     // echo $result;
@@ -23,8 +24,8 @@
     $job_title = $row['job_title'];
     $level = $row['level'];
     $skills = $row['skills'];
-    // $id = $_GET["id"];
-    // echo $id;
+    $id_user = $row['id_user'];
+    
 ?>
 <div id="dom_skills" style="display: none">
     <?php 
@@ -41,7 +42,7 @@
 <div class="container" style="width: 70vw">
     <div class="row short-des">
         <div class="col-sm-4 user-image">
-            <img src="https://images.unsplash.com/photo-1543610892-0b1f7e6d8ac1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80" alt="" class="w-100 m-0">
+            <img src="../controllers/displayAva.php?user_id=<?php echo $id_user; ?>" alt="" class="w-100 m-0">
         </div>
         <div class="col-sm-8 pl-6">
             <h1 class="username row">
@@ -86,7 +87,7 @@
         <div class="row category experience">
             <h2>Experience</h2>
             <?php 
-                $sql = "SELECT * FROM experiences WHERE id_user = $id";
+                $sql = "SELECT * FROM experiences WHERE user_id = $id_user";
                 $result = mysqli_query($conn, $sql);
                 
                 $num_row = mysqli_num_rows($result);
@@ -116,7 +117,7 @@
         <div class="row category education">
             <h2>Education</h2>
             <?php 
-                $sql = "SELECT * FROM education WHERE id_user = $id";
+                $sql = "SELECT * FROM education WHERE user_id = $id_user";
                 $result = mysqli_query($conn, $sql);
                 
                 $num_row = mysqli_num_rows($result);
@@ -146,7 +147,7 @@
         <div class="row category certificate">
             <h2>Certificate</h2>
             <?php 
-                $sql = "SELECT * FROM certificates WHERE id_user = $id";
+                $sql = "SELECT * FROM certificates WHERE user_id = $id_user";
                 $result = mysqli_query($conn, $sql);
                 
                 $num_row = mysqli_num_rows($result);

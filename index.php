@@ -17,6 +17,9 @@ Route::add('/find-employee', function() {
 Route::add('/login', function() {
     require __DIR__ . '/pages/login.php';
 });
+Route::add('/view-employee', function() {
+    require __DIR__ . '/pages/view-employee.php';
+});
 Route::add('/find-employee-process', function() {
     require __DIR__ . '/pages/find-employee-process.php';
 });

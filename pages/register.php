@@ -40,14 +40,16 @@ require __DIR__ . '/components/header.php';
             $avatar_url = 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/1200px-Default_pfp.svg.png';
             $avatar_blob = file_get_contents($avatar_url);
 
-            $query1 = "INSERT INTO cvs (id_user, first_name, last_name, avatar) VALUES ('$id', '$first_name', '$last_name', '$avatar_blob')";
-            $result1 = mysqli_query($conn, $query1);
+            $query1 = $conn -> prepare("INSERT INTO cvs (id_user, first_name, last_name, avatar) VALUES (?,?,?,?)");
+            $query1 -> bind_param('isss',$id, $first_name, $last_name, $avatar_blob);
+            $query1 -> execute();
+            // $result1 = mysqli_query($conn, $query1);
 
-            // Check if the insert was successful
-            if ($result and $result1) {
+            if ($result) {
                 $success_msg = 'Registration successful';
+                header('Location: /');
             } else {
-                $error_msg = 'Registration failed';
+                echo $error;
             }
         }
     }

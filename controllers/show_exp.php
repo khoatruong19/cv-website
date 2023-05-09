@@ -1,8 +1,7 @@
 <?php
-
+    session_start();
     if($_SERVER['REQUEST_METHOD'] === 'GET')
     {
-        $_SESSION['userId'] = 1;
         include '../pages/dbcontroller.php';
         $stmt = $conn -> prepare("select * from experiences where user_id = ?");
         $stmt -> bind_param("i",$_SESSION["userId"]);
