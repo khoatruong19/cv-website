@@ -1,5 +1,5 @@
 <?php
-    $_SESSION['userId'] = 1;
+    // $_SESSION['userId'] = 1;
     include './dbcontroller.php';
 
     if($_SERVER["REQUEST_METHOD"] === "POST")

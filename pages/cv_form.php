@@ -43,7 +43,7 @@
 
 </head>
 <?php
-    $_SESSION['userId'] = 1;
+    // $_SESSION['userId'] = 1;
 ?>
 <!-- <body> -->
 <body data-bs-spy="scroll" data-bs-target="#sidebar_list" data-bs-offset="0" class="scrollspy w-100" tabindex="0" style="overflow-x:hidden">
