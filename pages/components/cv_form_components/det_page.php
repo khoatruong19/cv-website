@@ -49,7 +49,24 @@
 
 
 <div class="cv_page_container position-relative" id="det_page">
-    <h2 class="text-uppercase text-dark pb-3 pt-3 text-bold">your details</h2>
+    <h2 class="text-uppercase text-dark pb-3 pt-3 text-bold d-flex" style="justify-content: space-between">
+        <span>Your details</span>
+        <form action="" style="position: relative">
+            <label for="is_publised">Make public: </label>
+            <input type="checkbox" name="is_published" id="publish_checkbox" style="transform: scale(2.2); padding-bottom: 5px; position: relative; bottom: 4px; margin-left: 4px;">
+            <script>
+                const checkbox = document.getElementById("publish_checkbox");
+                checkbox.onchange = function(){
+                    if (checkbox.checked === true) {
+                        $.get('../controllers/detail_public.php');
+                    }
+                    else if (checkbox.checked === false) {
+                        $.get('../controllers/detail_private.php');
+                    };
+                }
+            </script>
+        </form>
+    </h2>
     <hr style="border-top: 2px solid black;">
 
     <div class="container" id="detail_form">
