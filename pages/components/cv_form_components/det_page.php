@@ -1,7 +1,52 @@
 <?php
     // $_SESSION['userId'] = 1;
-    include './dbcontroller.php';
+    function formatSkills($skill){
+        return $skill->value;
+    }
+    require __DIR__ . '../../../dbcontroller.php';
+    $userId = $_SESSION['userId'];
 
+    $sql = "SELECT * FROM cvs where id_user='$userId'";
+    $first_name = ""; 
+    $last_name = ""; 
+    $email = ""; 
+    $phone = ""; 
+    $address = ""; 
+    $job_title = ""; 
+    $level = ""; 
+    $skills = ""; 
+    $bio = ""; 
+    $avatar = ""; 
+    $is_published = 0; 
+
+    try{
+      $result = mysqli_query($conn, $sql);
+    
+      if (mysqli_num_rows($result) > 0) {
+          // output data of each row
+          if($row = mysqli_fetch_assoc($result)) {
+            $first_name= $row["first_name"];
+            $last_name= $row["last_name"];
+            $email= $row["email"];
+            $phone= $row["phone"];
+            $address= $row["address"];
+            $job_title= $row["job_title"];
+            $level= $row["level"];
+            $skills= $row["skills"];
+            $bio= $row["bio"];
+            $avatar= $row["avatar"];
+            $is_published= $row["is_published"];
+        }
+        echo "<script>var isPublished = {$is_published}</script>";
+        echo $level;
+
+      } else {
+          echo "No cv found";
+      }
+    }
+    catch(mysqli_sql_exception){
+      echo "FAil to query cv";
+    }
     if($_SERVER["REQUEST_METHOD"] === "POST")
     {
         $first_name = $_POST['first_name'];
@@ -11,11 +56,20 @@
         $address = $_POST['address'];
         $job_title = $_POST['job_title'];
         $level = $_POST['level'];
-        $skills = $_POST['skills'];
+        $skills = $_POST['skills'] ?? "";
         $level = $_POST['level'];
-        // $bio = $_POST['bio'];
-        $bio ="";
+        $bio = $_POST['bio'];
         $id_user = $_SESSION['userId'];
+
+        echo $first_name;
+        echo $level;
+        echo $job_title;
+
+        if(strlen($skills) > 0){
+            $skills = json_decode($skills);
+            $skills = array_map('formatSkills', $skills);
+            $skills = join(";",$skills);
+        }
 
         if(isset($_FILES['avatar']))
         {
@@ -39,11 +93,12 @@
                 $image = file_get_contents($file_tmp);
             }
 
-            $stmt = $conn->prepare("UPDATE cvs SET first_name=?, last_name=?, email=?, phone=?, address=?, avatar=?, level=?, skills=?, bio=? WHERE id_user=?;");
-            $stmt->bind_param("sssssssssi", $first_name, $last_name, $email, $phone, $address, $image, $level, $skills, $bio, $id_user);
+            $stmt = $conn->prepare("UPDATE cvs SET first_name=?, last_name=?, email=?, phone=?, address=?,  level=?, skills=?, bio=? WHERE id_user=?;");
+            $stmt->bind_param("ssssssssi", $first_name, $last_name, $email, $phone, $address, $level, $skills, $bio, $id_user);
             $stmt->execute();
             $stmt->close();
         }
+       
     }
 ?>
 
@@ -54,23 +109,13 @@
         <form action="" style="position: relative">
             <label for="is_publised">Make public: </label>
             <input type="checkbox" name="is_published" id="publish_checkbox" style="transform: scale(2.2); padding-bottom: 5px; position: relative; bottom: 4px; margin-left: 4px;">
-            <script>
-                const checkbox = document.getElementById("publish_checkbox");
-                checkbox.onchange = function(){
-                    if (checkbox.checked === true) {
-                        $.get('../controllers/detail_public.php');
-                    }
-                    else if (checkbox.checked === false) {
-                        $.get('../controllers/detail_private.php');
-                    };
-                }
-            </script>
+           
         </form>
     </h2>
     <hr style="border-top: 2px solid black;">
 
     <div class="container" id="detail_form">
-        <form class="position-relative" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
+        <form class="position-relative" action="#" method="post" enctype="multipart/form-data">
             <!-- <div class="justify-content-between"> -->
             <div class="position-absolute col-md-4 w-25" style="right: 5vh;">
                 <div class="text-center p-3 pb-0">
@@ -84,11 +129,11 @@
             <div class="row g-4">
                 <div class="col-md-4">
                     <label for="det_firstName" class="form-label">First Name</label>
-                    <input name="first_name" type="text" class="form-control border-input " id="first_name"">
+                    <input value="<?php echo (!empty($first_name) ? $first_name : ''); ?>" name="first_name" type="text" class="form-control border-input " id="first_name"">
                 </div>
                 <div class="col-md-4">
                     <label for="det_lastName" class="form-label">Last Name</label>
-                    <input name="last_name" type="text" class="form-control border-input shadow" id="last_name"">
+                    <input value="<?php echo (!empty($last_name) ? $last_name : ''); ?>" name="last_name" type="text" class="form-control border-input shadow" id="last_name"">
                 </div>
             </div>
             <!-- <div class="col-md-4"></div> -->
@@ -96,37 +141,38 @@
             <div class="row g-4">
                 <div class="col-md-4">
                     <label for="det_mail" class="form-label">Email</label>
-                    <input name="email" type="text" class="form-control border-input shadow" id="det_mail">
+                    <input value="<?php echo (!empty($email) ? $email : ''); ?>" name="email" type="text" class="form-control border-input shadow" id="det_mail">
                 </div>
                 <div class="col-md-4">
                     <label for="det_phone" class="form-label">Phone No</label>
-                    <input name="phone" type="text" class="form-control border-input shadow"  id="det_phone">
+                    <input value="<?php echo (!empty($phone) ? $phone : ''); ?>" name="phone" type="text" class="form-control border-input shadow"  id="det_phone">
                 </div>
             </div>
             <!-- <div class="col-md-6"></div> -->
             <div class="col-md-8">
                 <label for="det_url" class="form-label">Address</label>
-                <input name="address" type="text" class="form-control border-input shadow" id="det_address">
+                <input value="<?php echo (!empty($address) ? $address : ''); ?>" name="address" type="text" class="form-control border-input shadow" id="det_address">
             </div>
             <div class="col-md-8">
                 <label for="det_jobTitle" class="form-label">Job Title</label>
                 <select name="job_title" id="det_jobTitle" class="form-control border-input shadow">
-                    <option selected value=""></option>
-                    <option value="Front-end Developer">Front-end Developer</option>
-                    <option value="Back-end Developer">Back-end Developer</option>
-                    <option value="Full-stack Developer">Full-stack Developer</option>
+                    <option <?php echo (!empty($job_title))? "selected" : "" ?>  value=""></option>
+                    <option <?php echo ($job_title === "Front-end Developer")? "selected" : "" ?> value="Front-end Developer">Front-end Developer</option>
+                    <option <?php echo ($job_title === "Back-end Developer")? "selected" : "" ?> value="Back-end Developer">Back-end Developer</option>
+                    <option <?php echo ($job_title === "Full-stack Developer")? "selected" : "" ?> value="Full-stack Developer">Full-stack Developer</option>
                 </select>
             </div>
             <div class="col-md-8">
                 <label for="det_level" class="form-label">Level</label>
+
                 <select name="level" type="text" class="form-control border-input shadow" id="det_level">
-                    <option selected value=""></option>
-                    <option value="Intern">Intern</option>
-                    <option value="Fresher">Fresher</option>
-                    <option value="Junior">Junior</option>
-                    <option value="Middle">Middle</option>
-                    <option value="Senior">Senior</option>
-                    <option value="Leader">Leader</option>
+                    <option <?php echo (!empty($level)) ?> value=""></option>
+                    <option <?php echo ($level === "Intern")? "selected" : "" ?> value="Intern">Intern</option>
+                    <option <?php echo ($level === "Fresher")? "selected" : "" ?> value="Fresher">Fresher</option>
+                    <option <?php echo ($level === "Junior") ? "selected" : "" ?> value="Junior">Junior</option>
+                    <option <?php echo ($level === "Middle")? "selected" : "" ?> value="Middle">Middle</option>
+                    <option <?php echo ($level === "Senior")? "selected" : "" ?> value="Senior">Senior</option>
+                    <option <?php echo ($level === "Leader")? "selected" : "" ?> value="Leader">Leader</option>
                 </select>
             </div>
             <div class="col-md-8">
@@ -137,11 +183,14 @@
                     name="skills"
                     autofocus
                     class="form-control border-input shadow"
+                    value="<?php echo str_replace(";",",",$skills) ?>"
                 />
             </div>
             <div class="col-12">
                 <label for="bio" class="form-label">Bio</label>
-                <textarea name="bio" type="text" class="form-control border-input shadow" style="height: 16vh"></textarea>
+                <textarea name="bio" type="text" class="form-control border-input shadow" style="height: 16vh">
+                    <?php echo (!empty($bio) ? $bio : ''); ?>
+                </textarea>
             </div>
             <div class="col-12 mt-5">
                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -158,64 +207,25 @@
 
 <script src="https://unpkg.com/@yaireo/tagify"></script>
 <script src="https://unpkg.com/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>
-<!-- <script>
+<script>
     // The DOM element you wish to replace with Tagify
     var input = document.getElementById('skills-inp');
     // initialize Tagify on the above input node reference
     new Tagify(input);
 </script>
-    <script>
-        document.getElementById("first_name").value = getSavedValue("first_name");
-        document.getElementById("last_name").value = getSavedValue("last_name");
-        document.getElementById("det_mail").value = getSavedValue("det_mail");
-        document.getElementById("det_phone").value = getSavedValue("det_phone");
-        document.getElementById("det_address").value = getSavedValue("det_address");
-        document.getElementById("det_jobTitle").value = getSavedValue("det_jobTitle");
-        document.getElementById("det_level").value = getSavedValue("det_level");
-        document.getElementById("skills-inp").value = getSavedValue("skills-inp");
-        document.getElementById("det_bio").value = getSavedValue("det_bio");
-
-
-        function uploadImage(){
-            let file_data = $("#image_file").prop("files")[0];
-            let form_data = new FormData();
-            form_data.append("file", file_data);
-            $.ajax({
-                url: "load.php",
-                type: "POST",
-                dataType: "script",
-                cache: false,
-                contentType: false,
-                processData: false,
-                data: form_data,
-
-                success: function(data){
-                    if (data === 1) alert("Successful");
-                    else alert("Unable to upload image");
+<script src="../js/cv_form_js/DetForm.js"></script>
+<script>
+                const checkbox = document.getElementById("publish_checkbox");
+               
+                checkbox.onchange = function(){
+                    if (checkbox.checked === true) {
+                        $.get('../controllers/detail_public.php');
+                    }
+                    else if (checkbox.checked === false) {
+                        $.get('../controllers/detail_private.php');
+                    };
                 }
-            });
-        }
+                if(isPublished) checkbox.checked = true;
+                else checkbox.checked = false;
+            </script>
 
-        function saveValue(e){
-            var id = e.id;
-            var val = e.value;
-            localStorage.setItem(id, val);
-        }
-
-        function getSavedValue(v){
-            if (!localStorage.getItem(v)) {
-                return "";
-            }
-            return localStorage.getItem(v);
-        }
-
-        handleSubmitFilter = function(){
-            const form_data = new FormData();
-            const formEle = document.getElementsByClassName("form-control");
-            for(let count = 0; count < formEle.length; count++){
-                if(formEle[count].name){
-                    formData.append(formEle[count].name, formEle[count].value)
-                }
-            }
-        }
-    </script> -->

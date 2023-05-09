@@ -9,6 +9,8 @@ if (isset($_SESSION['username'])) {
     header('Location: /');
 }
 
+session_destroy();
+
 include "dbcontroller.php";
 
 
@@ -43,11 +45,14 @@ if (isset($_POST['login_btn'])) {
 
         // Check if the query was successful and if the user exists
         if (mysqli_num_rows($result) == 1) {
+            session_start();
             $_SESSION['username'] = $username;
             $row = mysqli_fetch_assoc($result);
             // Store username and logged-in status in local storage
             $_SESSION["valid"] = true;
             $_SESSION["userId"] = $row["id"];
+            $_SESSION["firstName"] = $row["first_name"];
+            $_SESSION["lastName"] = $row["last_name"];
             header('Location: /');
             exit;
         } else {
