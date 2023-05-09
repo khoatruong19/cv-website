@@ -1,5 +1,11 @@
  <?php 
     require __DIR__ . '/dbcontroller.php';
+
+    if (isset($_GET['logout'])) {
+        session_destroy();
+        header('Location: /login');
+        exit();
+    }
  ?> 
 
 <!DOCTYPE html>
@@ -53,6 +59,9 @@
                     echo "{$_SESSION["firstName"]} {$_SESSION["lastName"]}";
                   ?>
                 </p>
+                <div style="padding:0 1em; background-color:white; border-radius:10px; text-align:center;">
+                  <a class="text-2xl font-semibold hover:text-violet-400" style="font-size:17px;" href="?logout=true">Logout</a>
+                </div>
             </div>
         </div>
         <a href='http://localhost/cv-form'>
