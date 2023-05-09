@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php
 require __DIR__ . '/components/header.php';
 
@@ -10,32 +9,11 @@ $port = 4306;
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname, $port);
-=======
-<?php 
-require __DIR__ . '/components/header.php'; 
-
-$servername = "localhost";
-$username = "root";
-$password = "root";
-$dbname = "cv_web";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password);
->>>>>>> main
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-
-<<<<<<< HEAD
-=======
-$sql = "CREATE DATABASE IF NOT EXISTS $dbname";
-if ($conn->query($sql) === TRUE) {
-    $conn->select_db($dbname);
-} else {
-    echo "Error creating database: " . $conn->error;
-}
-
->>>>>>> main
+$conn -> query('use cv_web');
+$conn -> query('drop table if exists cvs');
 // Create users table
 $tableName = 'users';
 $sql = "CREATE TABLE IF NOT EXISTS $tableName (
@@ -58,7 +36,7 @@ $sql = "CREATE TABLE IF NOT EXISTS $tableName (
   email VARCHAR(50) NOT NULL,
   phone VARCHAR(20) NOT NULL,
   address VARCHAR(100) NOT NULL,
-  avatar VARCHAR(500),
+  avatar longblob not null,
   job_title VARCHAR(50) NOT NULL,
   level VARCHAR(50) NOT NULL,
   skills TEXT NOT NULL,
@@ -125,22 +103,13 @@ $conn->close();
 <body>
 
 <div class="">
-<<<<<<< HEAD
 <div
-=======
-<div 
->>>>>>> main
 style="
 display:flex;
 justify-content:center;
 padding-top:10em;">
-<<<<<<< HEAD
   <button
   onclick="createTables()"
-=======
-  <button 
-  onclick="createTables()" 
->>>>>>> main
   style=
   "border:solid 1px #383838;
   border-radius:10px;
