@@ -42,21 +42,21 @@
 <div class="container" style="width: 70vw">
     <div class="row short-des">
         <div class="col-sm-4 user-image">
-            <img src="../controllers/displayAva.php?user_id=<?php echo $id_user; ?>" alt="" class="w-100 m-0">
+            <img src="../controllers/displayAva.php?user_id=<?php echo $id_user; ?>" alt="" class="w-100 m-0 h-100 object-fit-cover">
         </div>
         <div class="col-sm-8 pl-6">
             <h1 class="username row">
             <div class="col fs-1 fw-bold mb-3"><span><?php echo "$first_name"?></span><span><?php echo " $last_name"?></span></div>
             </h1>
-            <div class="row mb-3">
-                <div class="col">
+            <div class="row mb-5">
+                <div class="col mb-3">
                     <span class="fw-bold h5">Short description</span><br>
                     <span class="fw-light p"><?php echo "$bio"?></span>
                 </div>
             </h1>
             <div class="row mb-3">
                 <div class="col">
-                    <span class="fw-bold h5">Currently</span><br>
+                    <span class="fw-bold h5">Role</span><br>
                     <span class="fw-light p"><?php echo "$job_title"?></span>
                 </div>
                 <div class="col">
@@ -83,7 +83,7 @@
                     <span class="fw-light p"><?php echo "$email"?></span>
                 </div>
                 <div class="col">
-                    <span class="fw-bold h5">Phonenumber</span><br>
+                    <span class="fw-bold h5">Phone Number</span><br>
                     <span class="fw-light p"><?php echo "$phone"?></span>
                 </div>
             </div>
@@ -93,7 +93,7 @@
 <div class="row fields">
     <div class="col relative">
         <div class="row category experience">
-            <h2>Experience</h2>
+            <h2 class="mb-2">Experience</h2>
             <?php 
                 $sql = "SELECT * FROM experiences WHERE user_id = $id_user";
                 $result = mysqli_query($conn, $sql);
@@ -112,9 +112,9 @@
                     <div class='category-item'>
                         <div class='brief mt-6'>
                             <div class='title-2 fs-5 fw-bold'>$job_title</div>
-                            <span class='fw-light'><span>(Start: $start_date/</span><span>End: $end_date)</span></span>
+                            <span class='fw-light mx-2'><span class='fw-bold'>Start:</span> $start_date / <span class='fw-bold'>End:</span> $end_date</span>
                         </div>
-                        <span class='fw-bold fst-italic mb-6'>$comp_name/$comp_loc</span>
+                        <span class='fw-bold fst-italic'>$comp_name</span> - <span>$comp_loc</span>
                         <p class='fw-light mb-6'>$desp</p>
                     </div>
                     ";
@@ -123,7 +123,7 @@
         </div>
         <div class="divider_line"></div>
         <div class="row category education">
-            <h2>Education</h2>
+            <h2 class="mb-2">Education</h2>
             <?php 
                 $sql = "SELECT * FROM education WHERE user_id = $id_user";
                 $result = mysqli_query($conn, $sql);
@@ -142,7 +142,7 @@
                     <div class='category-item'>
                         <div class='brief mt-6'>
                             <div class='title-2 fs-5 fw-bold'>$department</div>
-                            <span class='fw-light'><span>(Start: $start_date/</span><span>End: $end_date)</span></span>
+                            <span class='fw-light mx-2'><span class='fw-bold'>Start:</span> $start_date / <span class='fw-bold'>End:</span> $end_date</span>
                         </div>
                         <span class='fw-bold fst-italic mb-6'>$faculty/$uni_loc</span>
                         <p class='fw-light mb-6'>$desp</p>
@@ -153,7 +153,7 @@
         </div>
         <div class="divider_line"></div>
         <div class="row category certificate">
-            <h2>Certificate</h2>
+            <h2 class="mb-2">Certificate</h2>
             <?php 
                 $sql = "SELECT * FROM certificates WHERE user_id = $id_user";
                 $result = mysqli_query($conn, $sql);
@@ -171,7 +171,7 @@
                     <div class='category-item'>
                         <div class='brief mt-6'>
                             <div class='title-2 fs-5 fw-bold'>$certificate_name</div>
-                            <span class='fw-light'><span>(Start: $start_date/</span><span>End: $end_date)</span></span>
+                            <span class='fw-light mx-2'><span class='fw-bold'>Start:</span> $start_date / <span class='fw-bold'>End:</span> $end_date</span>
                         </div>
                         <span class='fw-bold fst-italic mb-6'>$issue_organization</span>
                         <p class='fw-light mb-6'>$desp</p>

@@ -51,7 +51,7 @@
     <div class="row">
         <aside class="col-12 col-sm-2 p-0 d-flex flex-column sticky-top font_aside" style="height:100vh; background-color: #B4D3F0">
             <div class="text-center p-3 pb-0">
-                <img class="img-fluid rounded-circle my-4 p-1 d-none d-md-block shadow"src="../controllers/displayAva.php?user_id=<?php echo $_SESSION['userId']; ?>" alt="profile picture" />
+                <img style="height: 250px; width: 250px" class="img-fluid rounded-circle mx-2 my-4 p-1 d-none d-md-block shadow"src="../controllers/displayAva.php?user_id=<?php echo $_SESSION['userId']; ?>" alt="profile picture" />
             </div>
             <div class="d-block mb-4 d-flex justify-content-center align-items-center">
                 <p class="text-dark text-uppercase fw-bold custom_name"><?php
@@ -64,6 +64,7 @@
                 <a href="#item-2" class="d-block p-4  list-group-item-action  list-group-item border-bottom d-flex justify-content-center align-items-center text-dark text-decoration-none text-uppercase ">education</a>
                 <a href="#item-3" class="d-block p-4  list-group-item-action  list-group-item border-bottom d-flex justify-content-center align-items-center text-dark text-decoration-none text-uppercase ">certificates</a>
             </div>
+            <a href="http://localhost" class="d-block p-4  list-group-item-action  list-group-item border-bottom d-flex justify-content-center align-items-center text-dark text-decoration-none text-uppercase ">homepage</a>
         </aside>
         <div class="col-12 col-sm-9 m-2">
             <div class="" id="item-0">

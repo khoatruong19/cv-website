@@ -68,7 +68,7 @@
             </button>
         </div>
         <div class="col-4 col-md-12 d-flex flex-row-reverse">
-            <button type="submit" class="cus_next btn btn-primary rounded-3 d-block border-input text-dark shadow" style="background-color: rgb(214, 225, 242);">Next</button>
+            <a href="#item-3" type="submit" class="cus_next btn btn-primary rounded-3 d-block border-input text-dark shadow" style="background-color: rgb(214, 225, 242);">Next</a>
         </div>
     </div>
     <script>

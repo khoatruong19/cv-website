@@ -6,6 +6,7 @@
     require __DIR__ . '../../../dbcontroller.php';
     $userId = $_SESSION['userId'];
     $sql = "SELECT * FROM cvs where id_user='$userId'";
+    $cv_id = "";
     $first_name = ""; 
     $last_name = ""; 
     $email = ""; 
@@ -24,6 +25,7 @@
       if (mysqli_num_rows($result) > 0) {
           // output data of each row
           if($row = mysqli_fetch_assoc($result)) {
+            $cv_id = $row["id"];
             $first_name= $row["first_name"];
             $last_name= $row["last_name"];
             $email= $row["email"];
@@ -37,7 +39,6 @@
             $is_published= $row["is_published"];
         }
         echo "<script>var isPublished = {$is_published}</script>";
-        echo $level;
 
       } else {
           echo "No cv found";
@@ -103,20 +104,24 @@
 <div class="cv_page_container position-relative" id="det_page">
     <h2 class="text-uppercase text-dark pb-3 pt-3 text-bold d-flex" style="justify-content: space-between">
         <span>Your details</span>
-        <form action="" style="position: relative">
-            <label for="is_publised">Make public: </label>
-            <input type="checkbox" name="is_published" id="publish_checkbox" style="transform: scale(2.2); padding-bottom: 5px; position: relative; bottom: 4px; margin-left: 4px;">
-           
-        </form>
+        <div class="d-flex">
+            <a class="show-cv mx-4 text-success" href='http://localhost/view-employee?id=<?php echo $cv_id; ?>'>
+                Show CV
+            </a>
+            <form action="" style="position: relative">
+                <label for="is_publised">Make public: </label>
+                <input type="checkbox" name="is_published" id="publish_checkbox" style="transform: scale(2.2); padding-bottom: 5px; position: relative; bottom: 4px; margin-left: 4px;">
+            </form>
+        </div>
     </h2>
     <hr style="border-top: 2px solid black;">
 
     <div class="container" id="detail_form">
-        <form class="position-relative" action="#" method="post" enctype="multipart/form-data">
+        <form class="position-relative" action="" method="post" enctype="multipart/form-data">
             <!-- <div class="justify-content-between"> -->
             <div class="position-absolute col-md-4 w-25" style="right: 5vh;">
                 <div class="text-center p-3 pb-0">
-                    <img class="img-fluid rounded-circle my-4 p-1 d-none d-md-block shadow" src="../controllers/displayAva.php?user_id=<?php echo $_SESSION['userId']; ?>" alt="profile picture" />
+                    <img style="height: 250px; width: 250px" class="img-fluid rounded-circle my-4 p-1 d-none d-md-block shadow" src="../controllers/displayAva.php?user_id=<?php echo $_SESSION['userId']; ?>" alt="profile picture" />
                 </div>
                 <div class="d-block mb-4 d-flex justify-content-center align-items-center">
                     <input type="file" name="avatar" id="image_file" >
@@ -197,7 +202,7 @@
 
     <div class="position-absolute bottom-0 w-100 row d-flex mb-4 d-block mb-2" style="height:5vh">
         <div class="col-4 col-md-12 d-flex flex-row-reverse">
-            <button type="submit" class="cus_next btn btn-primary rounded-3 d-block border-input text-dark shadow" style="background-color: rgb(214, 225, 242);">Next</button>
+            <a href="#item-1" class="cus_next btn btn-primary rounded-3 d-block border-input text-dark shadow" style="background-color: rgb(214, 225, 242);">Next</a>
         </div>
     </div>
 </div>
